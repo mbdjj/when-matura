@@ -11,7 +11,7 @@ import SwiftUI
 struct whenMaturaApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            OnboardingView()
         }
     }
 }
