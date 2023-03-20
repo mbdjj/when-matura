@@ -28,6 +28,19 @@ struct OnboardingView: View {
     }
     @FocusState var startYearFocused: Bool
     
+    // End year
+    @State var endYear = 0
+    var endYearText: String {
+        if endYear != 0 {
+            let len = "\(endYear)".count
+            let count = 4 - len > 0 ? 4 - len : 0
+            return "\(endYear)\(repeat: "R", count)"
+        } else {
+            return "RRRR"
+        }
+    }
+    @FocusState var endYearFocused: Bool
+    
     var body: some View {
         TabView(selection: $selectedView) {
             VStack {
@@ -83,13 +96,44 @@ struct OnboardingView: View {
                     }
                     .onSubmit {
                         if startYear != 0 && "\(startYear)".count > 3 {
-                            nameFieldFocused = true
+                            startYearFocused = true
                         } else {
-                            selectedView = 1
+                            selectedView = 2
                         }
                     }
             }
             .tag(1)
+            
+            VStack {
+                Text("W którym roku kończysz szkołę??")
+                    .foregroundColor(.gray)
+                    .onTapGesture {
+                        endYearFocused = true
+                    }
+                Text(endYearText)
+                    .font(.system(.largeTitle, design: .rounded, weight: .semibold))
+                    .onTapGesture {
+                        endYearFocused = true
+                    }
+                
+                TextField("End Year", value: $endYear, format: .number)
+                    .opacity(0)
+                    .focused($endYearFocused)
+                    .keyboardType(.numberPad)
+                    .submitLabel(.done)
+                    .autocorrectionDisabled()
+                    .onAppear {
+                        endYearFocused = true
+                    }
+                    .onSubmit {
+                        if endYear != 0 && "\(startYear)".count > 3 {
+                            endYearFocused = true
+                        } else {
+                            selectedView = 2
+                        }
+                    }
+            }
+            .tag(2)
         }
         .tabViewStyle(.page)
         .indexViewStyle(.page(backgroundDisplayMode: .always))
