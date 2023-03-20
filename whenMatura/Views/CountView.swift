@@ -8,9 +8,21 @@
 import SwiftUI
 
 struct CountView: View {
+    
+    var maturaDate: Date {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        let text = UserDefaults.standard.string(forKey: "maturaDate") ??  "2069-01-01"
+        
+        return Calendar.current.startOfDay(for: formatter.date(from: text)!)
+    }
+    var todayBeginning: Date {
+        return Calendar.current.startOfDay(for: .now)
+    }
+    
     var body: some View {
         VStack {
-            Text("\(420)")
+            Text("\(daysBetween(start: todayBeginning, end: maturaDate))")
                 .font(.system(size: 180, weight: .semibold, design: .rounded))
                 .minimumScaleFactor(0.6)
             Text("dni do matury")
@@ -19,6 +31,10 @@ struct CountView: View {
                 .foregroundColor(.secondary)
         }
         .padding()
+    }
+    
+    func daysBetween(start: Date, end: Date) -> Int {
+       Calendar.current.dateComponents([.day], from: start, to: end).day!
     }
 }
 

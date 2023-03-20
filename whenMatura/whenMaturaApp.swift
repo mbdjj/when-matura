@@ -9,9 +9,17 @@ import SwiftUI
 
 @main
 struct whenMaturaApp: App {
+    
+    @ObservedObject var appState = AppStateManager.shared
+    
     var body: some Scene {
         WindowGroup {
-            OnboardingView()
+            switch appState.appState {
+            case .onboarding:
+                OnboardingView()
+            case .app:
+                CountView()
+            }
         }
     }
 }

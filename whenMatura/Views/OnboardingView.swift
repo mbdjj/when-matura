@@ -10,6 +10,7 @@ import SwiftUI
 struct OnboardingView: View {
     
     @State var selectedView = 0
+    let defaults = UserDefaults.standard
     
     // Name
     @State var name = ""
@@ -166,7 +167,7 @@ struct OnboardingView: View {
                         endYearFocused = true
                     } else {
                         withAnimation {
-                            selectedView = 2
+                            finishOnboarding()
                         }
                     }
                 } label: {
@@ -177,6 +178,31 @@ struct OnboardingView: View {
             .tag(2)
         }
         .tabViewStyle(.page(indexDisplayMode: .never))
+    }
+    
+    func finishOnboarding() {
+        defaults.set(name, forKey: "name")
+        defaults.set(startYear, forKey: "startYear")
+        defaults.set(endYear, forKey: "endYear")
+        
+        defaults.set(maturaDate(for: endYear), forKey: "maturaDate")
+        
+        defaults.set(true, forKey: "onboardingDone")
+        AppStateManager.shared.appState = .app
+    }
+    
+    func maturaDate(for year: Int) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        
+        var date = Calendar.current.date(from: DateComponents(year: year, month: 5, day: 4))!
+        if date.dayNumberOfWeek() == 7 {
+            date = Calendar.current.date(byAdding: .day, value: 2, to: date)!
+        } else if date.dayNumberOfWeek() == 1 {
+            date = Calendar.current.date(byAdding: .day, value: 1, to: date)!
+        }
+        print(formatter.string(from: date))
+        return formatter.string(from: date)
     }
 }
 
@@ -191,5 +217,11 @@ extension String.StringInterpolation {
         for _ in 0 ..< count {
             appendLiteral(str)
         }
+    }
+}
+
+extension Date {
+    func dayNumberOfWeek() -> Int? {
+        return Calendar.current.dateComponents([.weekday], from: self).weekday
     }
 }

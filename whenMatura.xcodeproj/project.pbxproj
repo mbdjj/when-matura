@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3492FCF629C8D59E002432F0 /* AppStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3492FCF529C8D59E002432F0 /* AppStateManager.swift */; };
 		34C0764629C3087F00ACF799 /* whenMaturaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C0764529C3087F00ACF799 /* whenMaturaApp.swift */; };
 		34C0764829C3087F00ACF799 /* CountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C0764729C3087F00ACF799 /* CountView.swift */; };
 		34C0764A29C3087F00ACF799 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34C0764929C3087F00ACF799 /* Assets.xcassets */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3492FCF529C8D59E002432F0 /* AppStateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateManager.swift; sourceTree = "<group>"; };
 		34C0764229C3087F00ACF799 /* whenMatura.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = whenMatura.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34C0764529C3087F00ACF799 /* whenMaturaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = whenMaturaApp.swift; sourceTree = "<group>"; };
 		34C0764729C3087F00ACF799 /* CountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountView.swift; sourceTree = "<group>"; };
@@ -54,6 +56,7 @@
 			isa = PBXGroup;
 			children = (
 				34C0764529C3087F00ACF799 /* whenMaturaApp.swift */,
+				3492FCF529C8D59E002432F0 /* AppStateManager.swift */,
 				34C0765329C308AA00ACF799 /* Views */,
 				34C0764929C3087F00ACF799 /* Assets.xcassets */,
 				34C0764B29C3087F00ACF799 /* Preview Content */,
@@ -149,6 +152,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				34C0765529C309D900ACF799 /* OnboardingView.swift in Sources */,
+				3492FCF629C8D59E002432F0 /* AppStateManager.swift in Sources */,
 				34C0764829C3087F00ACF799 /* CountView.swift in Sources */,
 				34C0764629C3087F00ACF799 /* whenMaturaApp.swift in Sources */,
 			);
