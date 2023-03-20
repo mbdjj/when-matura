@@ -67,9 +67,24 @@ struct OnboardingView: View {
                         if name.isEmpty {
                             nameFieldFocused = true
                         } else {
+                            withAnimation {
+                                selectedView = 1
+                            }
+                        }
+                    }
+                
+                Button {
+                    if name.isEmpty {
+                        nameFieldFocused = true
+                    } else {
+                        withAnimation {
                             selectedView = 1
                         }
                     }
+                } label: {
+                    Image(systemName: "arrow.right")
+                        .foregroundColor(.primary)
+                }
             }
             .tag(0)
             
@@ -101,6 +116,19 @@ struct OnboardingView: View {
                             selectedView = 2
                         }
                     }
+                
+                Button {
+                    if startYear <= 0 || "\(startYear)".count < 4 {
+                        startYearFocused = true
+                    } else {
+                        withAnimation {
+                            selectedView = 2
+                        }
+                    }
+                } label: {
+                    Image(systemName: "arrow.right")
+                        .foregroundColor(.primary)
+                }
             }
             .tag(1)
             
@@ -132,11 +160,23 @@ struct OnboardingView: View {
                             selectedView = 2
                         }
                     }
+                
+                Button {
+                    if endYear <= 0 || "\(endYear)".count < 4 {
+                        endYearFocused = true
+                    } else {
+                        withAnimation {
+                            selectedView = 2
+                        }
+                    }
+                } label: {
+                    Image(systemName: "arrow.right")
+                        .foregroundColor(.primary)
+                }
             }
             .tag(2)
         }
-        .tabViewStyle(.page)
-        .indexViewStyle(.page(backgroundDisplayMode: .always))
+        .tabViewStyle(.page(indexDisplayMode: .never))
     }
 }
 
