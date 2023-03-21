@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		344B3B0A29C9B348002CB723 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344B3B0929C9B348002CB723 /* SettingsView.swift */; };
 		3492FCF629C8D59E002432F0 /* AppStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3492FCF529C8D59E002432F0 /* AppStateManager.swift */; };
 		34C0764629C3087F00ACF799 /* whenMaturaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C0764529C3087F00ACF799 /* whenMaturaApp.swift */; };
 		34C0764829C3087F00ACF799 /* CountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C0764729C3087F00ACF799 /* CountView.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		344B3B0929C9B348002CB723 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		3492FCF529C8D59E002432F0 /* AppStateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateManager.swift; sourceTree = "<group>"; };
 		34C0764229C3087F00ACF799 /* whenMatura.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = whenMatura.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34C0764529C3087F00ACF799 /* whenMaturaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = whenMaturaApp.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 			children = (
 				34C0765429C309D900ACF799 /* OnboardingView.swift */,
 				34C0764729C3087F00ACF799 /* CountView.swift */,
+				344B3B0929C9B348002CB723 /* SettingsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -151,6 +154,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				344B3B0A29C9B348002CB723 /* SettingsView.swift in Sources */,
 				34C0765529C309D900ACF799 /* OnboardingView.swift in Sources */,
 				3492FCF629C8D59E002432F0 /* AppStateManager.swift in Sources */,
 				34C0764829C3087F00ACF799 /* CountView.swift in Sources */,

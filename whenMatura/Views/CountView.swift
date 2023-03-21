@@ -10,11 +10,13 @@ import SwiftUI
 struct CountView: View {
     
     @AppStorage("name") var name: String = "User"
+    @AppStorage("maturaDate") var text: String = "2069-05-04"
+    
+    @State var shouldShowSettings: Bool = false
     
     var maturaDate: Date {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
-        let text = UserDefaults.standard.string(forKey: "maturaDate") ??  "2069-01-01"
         
         return Calendar.current.startOfDay(for: formatter.date(from: text)!)
     }
@@ -23,25 +25,40 @@ struct CountView: View {
     }
     
     var body: some View {
-        VStack {
-            
-            Text("Cześć \(name)!")
-                .font(.system(.largeTitle, design: .rounded, weight: .bold))
-            Text("Pozostało Ci")
-                .font(.title2)
-                .bold()
-                .foregroundColor(.secondary)
-            
-            Text("\(daysBetween(start: todayBeginning, end: maturaDate))")
-                .font(.system(size: 180, weight: .semibold, design: .rounded))
-                .lineLimit(1)
-                .minimumScaleFactor(0.6)
-            Text("dni do matury")
-                .font(.title2)
-                .bold()
-                .foregroundColor(.secondary)
+        NavigationStack {
+            VStack {
+                
+                Spacer()
+                
+                Text("Cześć \(name)!")
+                    .font(.system(.largeTitle, design: .rounded, weight: .bold))
+                Text("Pozostało Ci")
+                    .font(.system(.title2, design: .rounded))
+                    .bold()
+                    .foregroundColor(.secondary)
+                
+                Text("\(daysBetween(start: todayBeginning, end: maturaDate))")
+                    .font(.system(size: 180, weight: .semibold, design: .rounded))
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.6)
+                Text("dni do matury")
+                    .font(.system(.title2, design: .rounded))
+                    .bold()
+                    .foregroundColor(.secondary)
+                
+                Spacer()
+                Spacer()
+            }
+            .padding()
+            .toolbar {
+                NavigationLink {
+                    SettingsView()
+                } label: {
+                    Image(systemName: "gear")
+                        .foregroundColor(.primary)
+                }
+            }
         }
-        .padding()
     }
     
     func daysBetween(start: Date, end: Date) -> Int {
