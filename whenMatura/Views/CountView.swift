@@ -9,6 +9,8 @@ import SwiftUI
 
 struct CountView: View {
     
+    @AppStorage("name") var name: String = "User"
+    
     var maturaDate: Date {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
@@ -22,8 +24,17 @@ struct CountView: View {
     
     var body: some View {
         VStack {
+            
+            Text("Cześć \(name)!")
+                .font(.system(.largeTitle, design: .rounded, weight: .bold))
+            Text("Pozostało Ci")
+                .font(.title2)
+                .bold()
+                .foregroundColor(.secondary)
+            
             Text("\(daysBetween(start: todayBeginning, end: maturaDate))")
                 .font(.system(size: 180, weight: .semibold, design: .rounded))
+                .lineLimit(1)
                 .minimumScaleFactor(0.6)
             Text("dni do matury")
                 .font(.title2)
