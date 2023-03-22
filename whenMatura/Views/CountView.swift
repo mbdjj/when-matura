@@ -24,38 +24,48 @@ struct CountView: View {
         return Calendar.current.startOfDay(for: .now)
     }
     
+    @ObservedObject var themeManager = ThemeManager.shared
+    
     var body: some View {
         NavigationStack {
-            VStack {
+            let theme = themeManager.current
+            ZStack {
+                theme.background
+                    .ignoresSafeArea()
                 
-                Spacer()
-                
-                Text("Cześć \(name)!")
-                    .font(.system(.largeTitle, design: .rounded, weight: .bold))
-                Text("Pozostało Ci")
-                    .font(.system(.title2, design: .rounded))
-                    .bold()
-                    .foregroundColor(.secondary)
-                
-                Text("\(daysBetween(start: todayBeginning, end: maturaDate))")
-                    .font(.system(size: 180, weight: .semibold, design: .rounded))
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.6)
-                Text("dni do matury")
-                    .font(.system(.title2, design: .rounded))
-                    .bold()
-                    .foregroundColor(.secondary)
-                
-                Spacer()
-                Spacer()
-            }
-            .padding()
-            .toolbar {
-                NavigationLink {
-                    SettingsView()
-                } label: {
-                    Image(systemName: "gear")
-                        .foregroundColor(.primary)
+                VStack {
+                    
+                    Spacer()
+                    
+                    Text("Cześć \(name)!")
+                        .font(.system(.largeTitle, design: .rounded, weight: .bold))
+                        .foregroundColor(theme.primary)
+                    Text("Pozostało Ci")
+                        .font(.system(.title2, design: .rounded))
+                        .bold()
+                        .foregroundColor(theme.secondary)
+                    
+                    Text("\(daysBetween(start: todayBeginning, end: maturaDate))")
+                        .font(.system(size: 180, weight: .semibold, design: .rounded))
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.6)
+                        .foregroundColor(theme.primary)
+                    Text("dni do matury")
+                        .font(.system(.title2, design: .rounded))
+                        .bold()
+                        .foregroundColor(theme.secondary)
+                    
+                    Spacer()
+                    Spacer()
+                }
+                .padding()
+                .toolbar {
+                    NavigationLink {
+                        SettingsView()
+                    } label: {
+                        Image(systemName: "gear")
+                            .foregroundColor(theme.primary)
+                    }
                 }
             }
         }

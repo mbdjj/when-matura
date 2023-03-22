@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3406DA6429C9F39D0090B416 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3406DA6329C9F39D0090B416 /* ThemeManager.swift */; };
+		3406DA6829C9F8790090B416 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3406DA6729C9F8790090B416 /* SettingsViewModel.swift */; };
+		3406DA6A29C9F96F0090B416 /* ChooseThemeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3406DA6929C9F96F0090B416 /* ChooseThemeView.swift */; };
 		344B3B0A29C9B348002CB723 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344B3B0929C9B348002CB723 /* SettingsView.swift */; };
 		3492FCF629C8D59E002432F0 /* AppStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3492FCF529C8D59E002432F0 /* AppStateManager.swift */; };
 		34C0764629C3087F00ACF799 /* whenMaturaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C0764529C3087F00ACF799 /* whenMaturaApp.swift */; };
@@ -17,6 +20,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3406DA6329C9F39D0090B416 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
+		3406DA6729C9F8790090B416 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		3406DA6929C9F96F0090B416 /* ChooseThemeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseThemeView.swift; sourceTree = "<group>"; };
 		344B3B0929C9B348002CB723 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		3492FCF529C8D59E002432F0 /* AppStateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateManager.swift; sourceTree = "<group>"; };
 		34C0764229C3087F00ACF799 /* whenMatura.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = whenMatura.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -38,6 +44,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3406DA6529C9F8440090B416 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				3492FCF529C8D59E002432F0 /* AppStateManager.swift */,
+				3406DA6329C9F39D0090B416 /* ThemeManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		3406DA6629C9F8530090B416 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				3406DA6729C9F8790090B416 /* SettingsViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		34C0763929C3087E00ACF799 = {
 			isa = PBXGroup;
 			children = (
@@ -58,7 +81,8 @@
 			isa = PBXGroup;
 			children = (
 				34C0764529C3087F00ACF799 /* whenMaturaApp.swift */,
-				3492FCF529C8D59E002432F0 /* AppStateManager.swift */,
+				3406DA6529C9F8440090B416 /* Managers */,
+				3406DA6629C9F8530090B416 /* ViewModels */,
 				34C0765329C308AA00ACF799 /* Views */,
 				34C0764929C3087F00ACF799 /* Assets.xcassets */,
 				34C0764B29C3087F00ACF799 /* Preview Content */,
@@ -80,6 +104,7 @@
 				34C0765429C309D900ACF799 /* OnboardingView.swift */,
 				34C0764729C3087F00ACF799 /* CountView.swift */,
 				344B3B0929C9B348002CB723 /* SettingsView.swift */,
+				3406DA6929C9F96F0090B416 /* ChooseThemeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -159,6 +184,9 @@
 				3492FCF629C8D59E002432F0 /* AppStateManager.swift in Sources */,
 				34C0764829C3087F00ACF799 /* CountView.swift in Sources */,
 				34C0764629C3087F00ACF799 /* whenMaturaApp.swift in Sources */,
+				3406DA6429C9F39D0090B416 /* ThemeManager.swift in Sources */,
+				3406DA6829C9F8790090B416 /* SettingsViewModel.swift in Sources */,
+				3406DA6A29C9F96F0090B416 /* ChooseThemeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,7 +313,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"whenMatura/Preview Content\"";
 				DEVELOPMENT_TEAM = CMJ553K76W;
 				ENABLE_PREVIEWS = YES;
@@ -318,7 +346,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"whenMatura/Preview Content\"";
 				DEVELOPMENT_TEAM = CMJ553K76W;
 				ENABLE_PREVIEWS = YES;

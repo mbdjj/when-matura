@@ -14,6 +14,13 @@ struct SettingsView: View {
     var body: some View {
         List {
             Label(name, systemImage: "person.fill")
+            
+            NavigationLink {
+                ChooseThemeView()
+            } label: {
+                Label("Motyw", systemImage: "paintpalette.fill")
+            }
+
         }
         .navigationTitle("Ustawienia")
     }
