@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
     
-    @AppStorage("name") var name: String = "User"
+    @AppStorage("name", store: UserDefaults(suiteName: "group.ga.bartminski.whenMatura")) var name: String = "User"
     
     var body: some View {
         List {

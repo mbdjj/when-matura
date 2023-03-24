@@ -16,7 +16,7 @@ class ThemeManager: ObservableObject {
     let altThemes: [Theme] = [.blueAlt, .redAlt, .yellowAlt, .orangeAlt, .indigoAlt]
     
     static let shared = ThemeManager()
-    let defaults = UserDefaults.standard
+    let defaults = UserDefaults(suiteName: "group.ga.bartminski.whenMatura")!
     
     init() {
         let themeCode = defaults.integer(forKey: "themeCode")
@@ -54,6 +54,7 @@ class ThemeManager: ObservableObject {
     
     func setTheme(_ theme: Theme) {
         defaults.set(codeTheme(theme), forKey: "themeCode")
+        defaults.synchronize()
         DispatchQueue.main.async {
             self.current = theme
         }

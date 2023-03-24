@@ -10,7 +10,7 @@ import SwiftUI
 struct OnboardingView: View {
     
     @State var selectedView = 0
-    let defaults = UserDefaults.standard
+    let defaults = UserDefaults(suiteName: "group.ga.bartminski.whenMatura")!
     
     // Name
     @State var name = ""
@@ -188,6 +188,7 @@ struct OnboardingView: View {
         defaults.set(maturaDate(for: endYear), forKey: "maturaDate")
         
         defaults.set(true, forKey: "onboardingDone")
+        defaults.synchronize()
         AppStateManager.shared.appState = .app
     }
     

@@ -23,6 +23,7 @@
 		3406DA6329C9F39D0090B416 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		3406DA6729C9F8790090B416 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		3406DA6929C9F96F0090B416 /* ChooseThemeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseThemeView.swift; sourceTree = "<group>"; };
+		341BA32229CD874D00501A9E /* whenMatura.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = whenMatura.entitlements; sourceTree = "<group>"; };
 		344B3B0929C9B348002CB723 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		3492FCF529C8D59E002432F0 /* AppStateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateManager.swift; sourceTree = "<group>"; };
 		34C0764229C3087F00ACF799 /* whenMatura.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = whenMatura.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -80,6 +81,7 @@
 		34C0764429C3087F00ACF799 /* whenMatura */ = {
 			isa = PBXGroup;
 			children = (
+				341BA32229CD874D00501A9E /* whenMatura.entitlements */,
 				34C0764529C3087F00ACF799 /* whenMaturaApp.swift */,
 				3406DA6529C9F8440090B416 /* Managers */,
 				3406DA6629C9F8530090B416 /* ViewModels */,
@@ -312,6 +314,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = whenMatura/whenMatura.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"whenMatura/Preview Content\"";
@@ -345,6 +348,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = whenMatura/whenMatura.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"whenMatura/Preview Content\"";

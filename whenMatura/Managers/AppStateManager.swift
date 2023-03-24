@@ -10,7 +10,7 @@ import Foundation
 class AppStateManager: ObservableObject {
     
     @Published var appState: AppState
-    let defaults = UserDefaults.standard
+    let defaults = UserDefaults(suiteName: "group.ga.bartminski.whenMatura")!
     static let shared = AppStateManager()
     
     init() {

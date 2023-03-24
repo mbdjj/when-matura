@@ -9,8 +9,8 @@ import SwiftUI
 
 struct CountView: View {
     
-    @AppStorage("name") var name: String = "User"
-    @AppStorage("maturaDate") var text: String = "2069-05-04"
+    @AppStorage("name", store: UserDefaults(suiteName: "group.ga.bartminski.whenMatura")) var name: String = "User"
+    @AppStorage("maturaDate", store: UserDefaults(suiteName: "group.ga.bartminski.whenMatura")) var text: String = "2069-05-04"
     
     @State var shouldShowSettings: Bool = false
     
