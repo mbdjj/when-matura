@@ -9,17 +9,59 @@ import SwiftUI
 
 class ThemeManager: ObservableObject {
     
-    @Published var current = Theme.indigo
+    @Published var current = Theme.defaultTheme
     
     let defaultThemes: [Theme] = [.defaultTheme]
     let colorThemes: [Theme] = [.blue, .red, .yellow, .orange, .indigo]
     let altThemes: [Theme] = [.blueAlt, .redAlt, .yellowAlt, .orangeAlt, .indigoAlt]
     
     static let shared = ThemeManager()
+    let defaults = UserDefaults.standard
+    
+    init() {
+        let themeCode = defaults.integer(forKey: "themeCode")
+        current = decodeTheme(from: themeCode)
+    }
+    
+    private func decodeTheme(from code: Int) -> Theme {
+        switch code {
+        case 0:
+            return .defaultTheme
+        case 100 ..< 200:
+            let index = code % 100
+            return colorThemes[index]
+        case 200 ..< 300:
+            let index = code % 200
+            return altThemes[index]
+        default:
+            return .defaultTheme
+        }
+    }
+    
+    private func codeTheme(_ theme: Theme) -> Int {
+        if defaultThemes.contains(where: { $0 == theme }) {
+            return 0
+        } else if colorThemes.contains(where: { $0 == theme }) {
+            let code = 100 + colorThemes.firstIndex(of: theme)!
+            return code
+        } else if altThemes.contains(where: { $0 == theme }) {
+            let code = 200 + altThemes.firstIndex(of: theme)!
+            return code
+        } else {
+            return 0
+        }
+    }
+    
+    func setTheme(_ theme: Theme) {
+        defaults.set(codeTheme(theme), forKey: "themeCode")
+        DispatchQueue.main.async {
+            self.current = theme
+        }
+    }
     
 }
 
-struct Theme: Hashable {
+struct Theme: Hashable, Identifiable {
     let primary: Color
     let secondary: Color
     let background: Color
@@ -41,6 +83,8 @@ struct Theme: Hashable {
                 .clipShape(Circle())
         }
     }
+    
+    let id = UUID()
     
     init(primary: Color, secondary: Color, background: Color) {
         self.primary = primary

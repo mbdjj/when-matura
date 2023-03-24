@@ -12,7 +12,7 @@ struct ChooseThemeView: View {
     @ObservedObject var manager = ThemeManager.shared
     
     var body: some View {
-        VStack {
+        ScrollView {
             
             let selected = manager.current
             VStack {
@@ -42,51 +42,79 @@ struct ChooseThemeView: View {
             .padding(8)
             .minimumScaleFactor(0.6)
             
-            Spacer()
+            Spacer(minLength: 24)
             
-            LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 16, alignment: .center), count: 4)) {
-                ForEach(ThemeManager.shared.defaultThemes, id: \.self) { theme in
-                    Button {
-                        withAnimation {
-                            ThemeManager.shared.current = theme
+            VStack {
+                HStack {
+                    Text("DOMYŚLNE")
+                        .font(.system(.caption, design: .rounded, weight: .semibold))
+                        .foregroundColor(.gray)
+                    Spacer()
+                }
+                .padding(.leading)
+                LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 16, alignment: .center), count: 4)) {
+                    ForEach(ThemeManager.shared.defaultThemes) { theme in
+                        Button {
+                            withAnimation {
+                                manager.setTheme(theme)
+                            }
+                        } label: {
+                            theme.preview
                         }
-                    } label: {
-                        theme.preview
                     }
                 }
             }
             
-            Spacer()
+            Spacer(minLength: 24)
             
-            LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 16, alignment: .center), count: 4)) {
-                ForEach(ThemeManager.shared.colorThemes, id: \.self) { theme in
-                    Button {
-                        withAnimation {
-                            ThemeManager.shared.current = theme
+            VStack {
+                HStack {
+                    Text("KOLOROWE")
+                        .font(.system(.caption, design: .rounded, weight: .semibold))
+                        .foregroundColor(.gray)
+                    Spacer()
+                }
+                .padding(.leading)
+                LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 16, alignment: .center), count: 4)) {
+                    ForEach(ThemeManager.shared.colorThemes) { theme in
+                        Button {
+                            withAnimation {
+                                manager.setTheme(theme)
+                            }
+                        } label: {
+                            theme.preview
                         }
-                    } label: {
-                        theme.preview
                     }
                 }
             }
             
-            Spacer()
+            Spacer(minLength: 24)
             
-            LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 16, alignment: .center), count: 4)) {
-                ForEach(ThemeManager.shared.altThemes, id: \.self) { theme in
-                    Button {
-                        withAnimation {
-                            ThemeManager.shared.current = theme
+            VStack {
+                HStack {
+                    Text("ALTERNATYWNE")
+                        .font(.system(.caption, design: .rounded, weight: .semibold))
+                        .foregroundColor(.gray)
+                    Spacer()
+                }
+                .padding(.leading)
+                LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 16, alignment: .center), count: 4)) {
+                    ForEach(ThemeManager.shared.altThemes) { theme in
+                        Button {
+                            withAnimation {
+                                manager.setTheme(theme)
+                            }
+                        } label: {
+                            theme.preview
                         }
-                    } label: {
-                        theme.preview
                     }
                 }
             }
             
-            Spacer()
+            Spacer(minLength: 24)
             
         }
+        .navigationTitle("Motywy")
     }
 }
 
