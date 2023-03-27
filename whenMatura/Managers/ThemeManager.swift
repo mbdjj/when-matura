@@ -12,8 +12,8 @@ class ThemeManager: ObservableObject {
     @Published var current = Theme.defaultTheme
     
     let defaultThemes: [Theme] = [.defaultTheme]
-    let colorThemes: [Theme] = [.blue, .red, .yellow, .orange, .indigo]
-    let altThemes: [Theme] = [.blueAlt, .redAlt, .yellowAlt, .orangeAlt, .indigoAlt]
+    let colorThemes: [Theme] = [.blue, .red, .yellow, .orange, .indigo, .green]
+    let altThemes: [Theme] = [.blueAlt, .redAlt, .yellowAlt, .orangeAlt, .indigoAlt, .greenAlt]
     
     static let shared = ThemeManager()
     let defaults = UserDefaults(suiteName: "group.ga.bartminski.whenMatura")!
@@ -106,12 +106,14 @@ struct Theme: Hashable, Identifiable {
     static let yellow = Theme(primary: .black, background: .yellow)
     static let orange = Theme(primary: .black, background: .orange)
     static let indigo = Theme(primary: .white, background: .indigo)
+    static let green = Theme(primary: .white, background: .green)
     
     static let blueAlt = Theme(primary: .blue, background: .systemBackground)
     static let redAlt = Theme(primary: .red, background: .systemBackground)
     static let yellowAlt = Theme(primary: .yellow, background: .systemBackground)
     static let orangeAlt = Theme(primary: .orange, background: .systemBackground)
     static let indigoAlt = Theme(primary: .indigo, background: .systemBackground)
+    static let greenAlt = Theme(primary: .green, background: .systemBackground)
 }
 
 extension Color {
