@@ -23,6 +23,7 @@
 		34F7DF4629D57CCC00088685 /* whenMaturaWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F7DF4529D57CCC00088685 /* whenMaturaWidget.swift */; };
 		34F7DF4829D57CCE00088685 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34F7DF4729D57CCE00088685 /* Assets.xcassets */; };
 		34F7DF4C29D57CCE00088685 /* whenMaturaWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 34F7DF3C29D57CCC00088685 /* whenMaturaWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		34F7DF5229D57ECE00088685 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3406DA6329C9F39D0090B416 /* ThemeManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		34F7DF4529D57CCC00088685 /* whenMaturaWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = whenMaturaWidget.swift; sourceTree = "<group>"; };
 		34F7DF4729D57CCE00088685 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		34F7DF4929D57CCE00088685 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		34F7DF5129D57D7A00088685 /* whenMaturaWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = whenMaturaWidgetExtension.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +113,7 @@
 		34C0763929C3087E00ACF799 = {
 			isa = PBXGroup;
 			children = (
+				34F7DF5129D57D7A00088685 /* whenMaturaWidgetExtension.entitlements */,
 				34C0764429C3087F00ACF799 /* whenMatura */,
 				34F7DF4229D57CCC00088685 /* whenMaturaWidget */,
 				34F7DF3D29D57CCC00088685 /* Frameworks */,
@@ -298,6 +301,7 @@
 			files = (
 				34F7DF4429D57CCC00088685 /* whenMaturaWidgetBundle.swift in Sources */,
 				34F7DF4629D57CCC00088685 /* whenMaturaWidget.swift in Sources */,
+				34F7DF5229D57ECE00088685 /* ThemeManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -503,6 +507,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = whenMaturaWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = CMJ553K76W;
@@ -530,6 +535,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = whenMaturaWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = CMJ553K76W;

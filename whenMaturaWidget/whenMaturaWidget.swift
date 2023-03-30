@@ -22,9 +22,9 @@ struct Provider: TimelineProvider {
         var entries: [SimpleEntry] = []
 
         // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-        let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
+        let currentDate = Calendar.current.startOfDay(for: .now)
+        for dayOffset in 0 ..< 5 {
+            let entryDate = Calendar.current.date(byAdding: .day, value: dayOffset, to: currentDate)!
             let entry = SimpleEntry(date: entryDate)
             entries.append(entry)
         }
@@ -40,9 +40,38 @@ struct SimpleEntry: TimelineEntry {
 
 struct whenMaturaWidgetEntryView : View {
     var entry: Provider.Entry
+    let defaults = UserDefaults(suiteName: "group.ga.bartminski.whenMatura")
+    let theme = ThemeManager.shared.current
+    
+    var maturaDate: Date {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        
+        return Calendar.current.startOfDay(for: formatter.date(from: defaults?.string(forKey: "maturaDate") ?? "2170-05-04")!)
+    }
+    var todayBeginning: Date {
+        return Calendar.current.startOfDay(for: .now)
+    }
 
     var body: some View {
-        Text(entry.date, style: .time)
+        VStack {
+            Text("\(daysBetween(start: todayBeginning, end: maturaDate))")
+                .foregroundColor(theme.primary)
+                .font(.system(size: 60, weight: .bold, design: .rounded))
+                .minimumScaleFactor(0.6)
+                .lineLimit(1)
+            Text("dni do matury")
+                .foregroundColor(theme.secondary)
+                .font(.system(.caption, design: .rounded))
+                .bold()
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .padding()
+        .background { theme.background }
+    }
+    
+    func daysBetween(start: Date, end: Date) -> Int {
+       Calendar.current.dateComponents([.day], from: start, to: end).day!
     }
 }
 
@@ -53,8 +82,9 @@ struct whenMaturaWidget: Widget {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             whenMaturaWidgetEntryView(entry: entry)
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+        .configurationDisplayName("Odliczanie")
+        .description("Odliczanie do Twojej matury z wybranym w aplikacji motywem.")
+        .supportedFamilies([.systemSmall])
     }
 }
 
