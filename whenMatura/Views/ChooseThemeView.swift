@@ -120,6 +120,8 @@ struct ChooseThemeView: View {
 
 struct ChooseThemeView_Previews: PreviewProvider {
     static var previews: some View {
-        ChooseThemeView()
+        NavigationStack {
+            ChooseThemeView()
+        }
     }
 }

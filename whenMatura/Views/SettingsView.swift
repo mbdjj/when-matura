@@ -23,6 +23,7 @@ struct SettingsView: View {
 
         }
         .navigationTitle("Ustawienia")
+        .foregroundColor(.primary)
     }
 }
 
