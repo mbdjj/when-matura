@@ -10,22 +10,24 @@ import SwiftUI
 
 struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date())
+        SimpleEntry(date: Date(), theme: .defaultTheme)
     }
 
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date())
+        let entry = SimpleEntry(date: Date(), theme: .defaultTheme)
         completion(entry)
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
+        let defaults = UserDefaults(suiteName: "group.ga.bartminski.whenMatura")
         var entries: [SimpleEntry] = []
 
         // Generate a timeline consisting of five entries an hour apart, starting from the current date.
         let currentDate = Calendar.current.startOfDay(for: .now)
         for dayOffset in 0 ..< 5 {
             let entryDate = Calendar.current.date(byAdding: .day, value: dayOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate)
+            let themeCode = defaults?.integer(forKey: "themeCode") ?? 0
+            let entry = SimpleEntry(date: entryDate, theme: ThemeManager.shared.decodeTheme(from: themeCode))
             entries.append(entry)
         }
 
@@ -36,12 +38,12 @@ struct Provider: TimelineProvider {
 
 struct SimpleEntry: TimelineEntry {
     let date: Date
+    let theme: Theme
 }
 
 struct whenMaturaWidgetEntryView : View {
     var entry: Provider.Entry
     let defaults = UserDefaults(suiteName: "group.ga.bartminski.whenMatura")
-    let theme = ThemeManager.shared.current
     
     var maturaDate: Date {
         let formatter = DateFormatter()
@@ -56,18 +58,18 @@ struct whenMaturaWidgetEntryView : View {
     var body: some View {
         VStack {
             Text("\(daysBetween(start: todayBeginning, end: maturaDate))")
-                .foregroundColor(theme.primary)
+                .foregroundColor(entry.theme.primary)
                 .font(.system(size: 60, weight: .bold, design: .rounded))
                 .minimumScaleFactor(0.6)
                 .lineLimit(1)
             Text("dni do matury")
-                .foregroundColor(theme.secondary)
+                .foregroundColor(entry.theme.secondary)
                 .font(.system(.caption, design: .rounded))
                 .bold()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding()
-        .background { theme.background }
+        .background { entry.theme.background }
     }
     
     func daysBetween(start: Date, end: Date) -> Int {
@@ -90,7 +92,7 @@ struct whenMaturaWidget: Widget {
 
 struct whenMaturaWidget_Previews: PreviewProvider {
     static var previews: some View {
-        whenMaturaWidgetEntryView(entry: SimpleEntry(date: Date()))
+        whenMaturaWidgetEntryView(entry: SimpleEntry(date: Date(), theme: .defaultTheme))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }

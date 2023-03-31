@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import WidgetKit
 
 class ThemeManager: ObservableObject {
     
@@ -23,7 +24,7 @@ class ThemeManager: ObservableObject {
         current = decodeTheme(from: themeCode)
     }
     
-    private func decodeTheme(from code: Int) -> Theme {
+    func decodeTheme(from code: Int) -> Theme {
         switch code {
         case 0:
             return .defaultTheme
@@ -58,6 +59,7 @@ class ThemeManager: ObservableObject {
         DispatchQueue.main.async {
             self.current = theme
         }
+        WidgetCenter.shared.reloadTimelines(ofKind: "whenMaturaWidget")
     }
     
 }
