@@ -13,8 +13,8 @@ class ThemeManager: ObservableObject {
     @Published var current = Theme.defaultTheme
     
     let defaultThemes: [Theme] = [.defaultTheme]
-    let colorThemes: [Theme] = [.blue, .red, .yellow, .orange, .indigo, .green, .brown, .pink, .purple, .walut]
-    let altThemes: [Theme] = [.blueAlt, .redAlt, .yellowAlt, .orangeAlt, .indigoAlt, .greenAlt, .brownAlt, .pinkAlt, .purpleAlt, .walutAlt]
+    let colorThemes: [Theme] = [.blue, .red, .yellow, .orange, .indigo, .green, .brown, .pink, .purple, .walut, .lavender]
+    let altThemes: [Theme] = [.blueAlt, .redAlt, .yellowAlt, .orangeAlt, .indigoAlt, .greenAlt, .brownAlt, .pinkAlt, .purpleAlt, .walutAlt, .lavenderAlt]
     
     static let shared = ThemeManager()
     let defaults = UserDefaults(suiteName: "group.ga.bartminski.whenMatura")!
@@ -120,6 +120,7 @@ struct Theme: Hashable, Identifiable {
     static let pink = Theme(name: "Różowy", primary: .black, background: .lightPink)
     static let purple = Theme(name: "Fioletowy", primary: .white, background: .purple)
     static let walut = Theme(name: "Walutowy", primary: .white, background: .walut)
+    static let lavender = Theme(name: "Lawendowy", primary: .white, background: .lavender)
     
     static let blueAlt = Theme(name: "Niebieski Alternatywny", primary: .blue, background: .systemBackground)
     static let redAlt = Theme(name: "Czerwony Alternatywny", primary: .red, background: .systemBackground)
@@ -131,10 +132,12 @@ struct Theme: Hashable, Identifiable {
     static let pinkAlt = Theme(name: "Różowy Alternatywny", primary: .lightPink, background: .systemBackground)
     static let purpleAlt = Theme(name: "Fioletowy Alternatywny", primary: .purple, background: .systemBackground)
     static let walutAlt = Theme(name: "Walutowy Alternatywny", primary: .walut, background: .systemBackground)
+    static let lavenderAlt = Theme(name: "Lawendowy Alternatywny", primary: .lavender, background: .systemBackground)
 }
 
 extension Color {
     static let systemBackground: Color = Color(uiColor: .systemBackground)
     static let walut = Color(red: 0, green: 0.725, blue: 0.682)
     static let lightPink = Color(red: 1, green: 0.78, blue: 0.87)
+    static let lavender = Color(red: 0.75, green: 0.6, blue: 0.9)
 }
