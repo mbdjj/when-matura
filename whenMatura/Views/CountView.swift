@@ -20,9 +20,7 @@ struct CountView: View {
         
         return Calendar.current.startOfDay(for: formatter.date(from: text)!)
     }
-    var todayBeginning: Date {
-        return Calendar.current.startOfDay(for: .now)
-    }
+    @State var todayBeginning: Date = Calendar.current.startOfDay(for: .now)
     
     @ObservedObject var themeManager = ThemeManager.shared
     
@@ -67,6 +65,12 @@ struct CountView: View {
                             .foregroundColor(theme.primary)
                     }
                 }
+            }
+        }
+        .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
+            print("Date refreshed!")
+            withAnimation {
+                todayBeginning = Calendar.current.startOfDay(for: .now)
             }
         }
     }
