@@ -13,8 +13,8 @@ class ThemeManager: ObservableObject {
     @Published var current = Theme.defaultTheme
     
     let defaultThemes: [Theme] = [.defaultTheme]
-    let colorThemes: [Theme] = [.blue, .red, .yellow, .orange, .indigo, .green]
-    let altThemes: [Theme] = [.blueAlt, .redAlt, .yellowAlt, .orangeAlt, .indigoAlt, .greenAlt]
+    let colorThemes: [Theme] = [.blue, .red, .yellow, .orange, .indigo, .green, .brown, .pink, .purple, .walut]
+    let altThemes: [Theme] = [.blueAlt, .redAlt, .yellowAlt, .orangeAlt, .indigoAlt, .greenAlt, .brownAlt, .pinkAlt, .purpleAlt, .walutAlt]
     
     static let shared = ThemeManager()
     let defaults = UserDefaults(suiteName: "group.ga.bartminski.whenMatura")!
@@ -116,6 +116,10 @@ struct Theme: Hashable, Identifiable {
     static let orange = Theme(name: "Pomarańczowy", primary: .black, background: .orange)
     static let indigo = Theme(name: "Indygo", primary: .white, background: .indigo)
     static let green = Theme(name: "Zielony", primary: .white, background: .green)
+    static let brown = Theme(name: "Brązowy", primary: .white, background: .brown)
+    static let pink = Theme(name: "Różowy", primary: .black, background: .lightPink)
+    static let purple = Theme(name: "Fioletowy", primary: .white, background: .purple)
+    static let walut = Theme(name: "Walutowy", primary: .white, background: .walut)
     
     static let blueAlt = Theme(name: "Niebieski Alternatywny", primary: .blue, background: .systemBackground)
     static let redAlt = Theme(name: "Czerwony Alternatywny", primary: .red, background: .systemBackground)
@@ -123,8 +127,14 @@ struct Theme: Hashable, Identifiable {
     static let orangeAlt = Theme(name: "Pomarańczowy Alternatywny", primary: .orange, background: .systemBackground)
     static let indigoAlt = Theme(name: "Indygo Alternatywny", primary: .indigo, background: .systemBackground)
     static let greenAlt = Theme(name: "Zielony Alternatywny", primary: .green, background: .systemBackground)
+    static let brownAlt = Theme(name: "Brązowy Alternatywny", primary: .brown, background: .systemBackground)
+    static let pinkAlt = Theme(name: "Różowy Alternatywny", primary: .lightPink, background: .systemBackground)
+    static let purpleAlt = Theme(name: "Fioletowy Alternatywny", primary: .purple, background: .systemBackground)
+    static let walutAlt = Theme(name: "Walutowy Alternatywny", primary: .walut, background: .systemBackground)
 }
 
 extension Color {
     static let systemBackground: Color = Color(uiColor: .systemBackground)
+    static let walut = Color(red: 0, green: 0.725, blue: 0.682)
+    static let lightPink = Color(red: 1, green: 0.78, blue: 0.87)
 }

@@ -24,7 +24,7 @@ struct ChooseThemeView: View {
                     .lineLimit(1)
                     .minimumScaleFactor(0.6)
                     .foregroundColor(selected.primary)
-                Text("To liczba, która się wylosowała")
+                Text(selected.name)
                     .font(.system(.title3, design: .rounded))
                     .bold()
                     .foregroundColor(selected.secondary)
