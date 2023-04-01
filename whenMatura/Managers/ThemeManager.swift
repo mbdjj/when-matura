@@ -65,6 +65,9 @@ class ThemeManager: ObservableObject {
 }
 
 struct Theme: Hashable, Identifiable {
+    
+    let name: String
+    
     let primary: Color
     let secondary: Color
     let background: Color
@@ -89,33 +92,37 @@ struct Theme: Hashable, Identifiable {
     
     let id = UUID()
     
-    init(primary: Color, secondary: Color, background: Color) {
+    init(name: String, primary: Color, secondary: Color, background: Color) {
+        self.name = name
+        
         self.primary = primary
         self.secondary = secondary
         self.background = background
     }
     
-    init(primary: Color, background: Color) {
+    init(name: String, primary: Color, background: Color) {
+        self.name = name
+        
         self.primary = primary
         self.secondary = primary.opacity(0.6)
         self.background = background
     }
     
-    static let defaultTheme = Theme(primary: .primary, secondary: .gray, background: .systemBackground)
+    static let defaultTheme = Theme(name: "Domyślny", primary: .primary, secondary: .gray, background: .systemBackground)
     
-    static let blue = Theme(primary: .white, background: .blue)
-    static let red = Theme(primary: .white, background: .red)
-    static let yellow = Theme(primary: .black, background: .yellow)
-    static let orange = Theme(primary: .black, background: .orange)
-    static let indigo = Theme(primary: .white, background: .indigo)
-    static let green = Theme(primary: .white, background: .green)
+    static let blue = Theme(name: "Niebieski", primary: .white, background: .blue)
+    static let red = Theme(name: "Czerwony", primary: .white, background: .red)
+    static let yellow = Theme(name: "Żółty", primary: .black, background: .yellow)
+    static let orange = Theme(name: "Pomarańczowy", primary: .black, background: .orange)
+    static let indigo = Theme(name: "Indygo", primary: .white, background: .indigo)
+    static let green = Theme(name: "Zielony", primary: .white, background: .green)
     
-    static let blueAlt = Theme(primary: .blue, background: .systemBackground)
-    static let redAlt = Theme(primary: .red, background: .systemBackground)
-    static let yellowAlt = Theme(primary: .yellow, background: .systemBackground)
-    static let orangeAlt = Theme(primary: .orange, background: .systemBackground)
-    static let indigoAlt = Theme(primary: .indigo, background: .systemBackground)
-    static let greenAlt = Theme(primary: .green, background: .systemBackground)
+    static let blueAlt = Theme(name: "Niebieski Alternatywny", primary: .blue, background: .systemBackground)
+    static let redAlt = Theme(name: "Czerwony Alternatywny", primary: .red, background: .systemBackground)
+    static let yellowAlt = Theme(name: "Żółty Alternatywny", primary: .yellow, background: .systemBackground)
+    static let orangeAlt = Theme(name: "Pomarańczowy Alternatywny", primary: .orange, background: .systemBackground)
+    static let indigoAlt = Theme(name: "Indygo Alternatywny", primary: .indigo, background: .systemBackground)
+    static let greenAlt = Theme(name: "Zielony Alternatywny", primary: .green, background: .systemBackground)
 }
 
 extension Color {
