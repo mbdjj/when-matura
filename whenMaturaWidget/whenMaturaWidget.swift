@@ -45,11 +45,15 @@ struct whenMaturaWidgetEntryView : View {
     var entry: Provider.Entry
     let defaults = UserDefaults(suiteName: "group.ga.bartminski.whenMatura")
     
-    var maturaDate: Date {
+    var maturaDate: Date? {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         
-        return Calendar.current.startOfDay(for: formatter.date(from: defaults?.string(forKey: "maturaDate") ?? "2023-05-04")!)
+        if let dateString = defaults?.string(forKey: "maturaDate") {
+            return Calendar.current.startOfDay(for: formatter.date(from: dateString)!)
+        } else {
+            return nil
+        }
     }
     var todayBeginning: Date {
         return Calendar.current.startOfDay(for: entry.date)
@@ -57,11 +61,19 @@ struct whenMaturaWidgetEntryView : View {
 
     var body: some View {
         VStack {
-            Text("\(daysBetween(start: todayBeginning, end: maturaDate))")
-                .foregroundColor(entry.theme.primary)
-                .font(.system(size: 70, weight: .bold, design: .rounded))
-                .minimumScaleFactor(0.5)
-                .lineLimit(1)
+            if let days = daysBetween(start: todayBeginning, end: maturaDate) {
+                Text("\(days)")
+                    .foregroundColor(entry.theme.primary)
+                    .font(.system(size: 70, weight: .bold, design: .rounded))
+                    .minimumScaleFactor(0.5)
+                    .lineLimit(1)
+            } else {
+                Text("XX")
+                    .foregroundColor(entry.theme.primary)
+                    .font(.system(size: 70, weight: .bold, design: .rounded))
+                    .minimumScaleFactor(0.5)
+                    .lineLimit(1)
+            }
             Text("dni do matury")
                 .foregroundColor(entry.theme.secondary)
                 .font(.system(.body, design: .rounded))
@@ -72,8 +84,12 @@ struct whenMaturaWidgetEntryView : View {
         .background { entry.theme.background }
     }
     
-    func daysBetween(start: Date, end: Date) -> Int {
-       Calendar.current.dateComponents([.day], from: start, to: end).day!
+    func daysBetween(start: Date, end: Date?) -> Int? {
+        if let endDate = end {
+            return Calendar.current.dateComponents([.day], from: start, to: endDate).day!
+        } else {
+            return nil
+        }
     }
 }
 
