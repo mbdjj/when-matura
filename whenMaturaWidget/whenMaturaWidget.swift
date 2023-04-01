@@ -49,22 +49,22 @@ struct whenMaturaWidgetEntryView : View {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         
-        return Calendar.current.startOfDay(for: formatter.date(from: defaults?.string(forKey: "maturaDate") ?? "2170-05-04")!)
+        return Calendar.current.startOfDay(for: formatter.date(from: defaults?.string(forKey: "maturaDate") ?? "2023-05-04")!)
     }
     var todayBeginning: Date {
-        return Calendar.current.startOfDay(for: .now)
+        return Calendar.current.startOfDay(for: entry.date)
     }
 
     var body: some View {
         VStack {
             Text("\(daysBetween(start: todayBeginning, end: maturaDate))")
                 .foregroundColor(entry.theme.primary)
-                .font(.system(size: 60, weight: .bold, design: .rounded))
-                .minimumScaleFactor(0.6)
+                .font(.system(size: 70, weight: .bold, design: .rounded))
+                .minimumScaleFactor(0.5)
                 .lineLimit(1)
             Text("dni do matury")
                 .foregroundColor(entry.theme.secondary)
-                .font(.system(.caption, design: .rounded))
+                .font(.system(.body, design: .rounded))
                 .bold()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
