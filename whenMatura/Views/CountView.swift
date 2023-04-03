@@ -60,6 +60,7 @@ struct CountView: View {
                 .toolbar {
                     NavigationLink {
                         SettingsView()
+                            .toolbarRole(.editor)
                     } label: {
                         Image(systemName: "gear")
                             .foregroundColor(theme.primary)
