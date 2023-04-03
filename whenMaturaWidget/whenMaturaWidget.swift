@@ -22,7 +22,6 @@ struct Provider: TimelineProvider {
         let defaults = UserDefaults(suiteName: "group.ga.bartminski.whenMatura")
         var entries: [SimpleEntry] = []
 
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
         let currentDate = Calendar.current.startOfDay(for: .now)
         for dayOffset in 0 ..< 5 {
             let entryDate = Calendar.current.date(byAdding: .day, value: dayOffset, to: currentDate)!
