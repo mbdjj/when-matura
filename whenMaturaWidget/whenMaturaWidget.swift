@@ -57,23 +57,17 @@ struct whenMaturaWidgetEntryView : View {
     var todayBeginning: Date {
         return Calendar.current.startOfDay(for: entry.date)
     }
+    
+    var matura: MaturaManager { MaturaManager(startDate: maturaDate, todayBeginning: todayBeginning) }
 
     var body: some View {
         VStack {
-            if let days = daysBetween(start: todayBeginning, end: maturaDate) {
-                Text("\(days)")
-                    .foregroundColor(entry.theme.primary)
-                    .font(.system(size: 70, weight: .bold, design: .rounded))
-                    .minimumScaleFactor(0.5)
-                    .lineLimit(1)
-            } else {
-                Text("XX")
-                    .foregroundColor(entry.theme.primary)
-                    .font(.system(size: 70, weight: .bold, design: .rounded))
-                    .minimumScaleFactor(0.5)
-                    .lineLimit(1)
-            }
-            Text("dni do matury")
+            Text("\(matura.currentState != .none ? String(matura.days) : "XX")")
+                .foregroundColor(entry.theme.primary)
+                .font(.system(size: 70, weight: .bold, design: .rounded))
+                .minimumScaleFactor(0.5)
+                .lineLimit(1)
+            Text(matura.texts.bottom)
                 .foregroundColor(entry.theme.secondary)
                 .font(.system(.body, design: .rounded))
                 .bold()

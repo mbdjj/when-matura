@@ -9,32 +9,38 @@ import SwiftUI
 
 struct MaturaManager {
     
-    @Binding var startDate: Date
-    @Binding var todayBeginning: Date
+    let startDate: Date?
+    let todayBeginning: Date
     
     var endDate: Date {
-        let date = Calendar.current.date(byAdding: .day, value: 19, to: startDate)!
+        let date = Calendar.current.date(byAdding: .day, value: 19, to: startDate ?? .now)!
         return Calendar.current.startOfDay(for: date)
     }
     
     var currentState: MaturaState {
         let startOfToday = Calendar.current.startOfDay(for: todayBeginning)
-        if daysBetween(start: startOfToday, end: startDate) > 0 {
-            return .before
-        } else if daysBetween(start: startDate, end: startOfToday) >= 0 && daysBetween(start: startOfToday, end: endDate) >= 0 {
-            return .inBetween
+        if let startDate {
+            if daysBetween(start: startOfToday, end: startDate) > 0 {
+                return .before
+            } else if daysBetween(start: startDate, end: startOfToday) >= 0 && daysBetween(start: startOfToday, end: endDate) >= 0 {
+                return .inBetween
+            } else {
+                return .after
+            }
         } else {
-            return .after
+            return .none
         }
     }
     
     var days: Int {
         let startOfToday = Calendar.current.startOfDay(for: todayBeginning)
         switch currentState {
+        case .none:
+            return 0
         case .before:
-            return daysBetween(start: startOfToday, end: startDate)
+            return daysBetween(start: startOfToday, end: startDate!)
         case .inBetween:
-            return daysBetween(start: startDate, end: startOfToday)
+            return daysBetween(start: startDate!, end: startOfToday)
         case .after:
             return daysBetween(start: endDate, end: startOfToday)
         }
@@ -42,6 +48,8 @@ struct MaturaManager {
     
     var texts: MaturaTexts {
         switch currentState {
+        case .none:
+            return MaturaTexts(top: "", bottom: "Uzupełnij w aplikacji")
         case .before:
             return MaturaTexts(top: "Pozostało Ci", bottom: "dni do matury")
         case .inBetween:
@@ -59,6 +67,7 @@ struct MaturaManager {
 }
 
 enum MaturaState {
+    case none
     case before
     case inBetween
     case after
