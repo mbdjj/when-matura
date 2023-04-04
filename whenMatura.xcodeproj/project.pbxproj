@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		3406DA6429C9F39D0090B416 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3406DA6329C9F39D0090B416 /* ThemeManager.swift */; };
 		3406DA6A29C9F96F0090B416 /* ChooseThemeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3406DA6929C9F96F0090B416 /* ChooseThemeView.swift */; };
+		340AB7E529DC007000A818C5 /* MaturaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340AB7E429DC007000A818C5 /* MaturaManager.swift */; };
+		340AB7E629DC007000A818C5 /* MaturaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340AB7E429DC007000A818C5 /* MaturaManager.swift */; };
 		344B3B0A29C9B348002CB723 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344B3B0929C9B348002CB723 /* SettingsView.swift */; };
 		3492FCF629C8D59E002432F0 /* AppStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3492FCF529C8D59E002432F0 /* AppStateManager.swift */; };
 		34C0764629C3087F00ACF799 /* whenMaturaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C0764529C3087F00ACF799 /* whenMaturaApp.swift */; };
@@ -52,6 +54,7 @@
 /* Begin PBXFileReference section */
 		3406DA6329C9F39D0090B416 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		3406DA6929C9F96F0090B416 /* ChooseThemeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseThemeView.swift; sourceTree = "<group>"; };
+		340AB7E429DC007000A818C5 /* MaturaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaturaManager.swift; sourceTree = "<group>"; };
 		341BA32229CD874D00501A9E /* whenMatura.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = whenMatura.entitlements; sourceTree = "<group>"; };
 		344B3B0929C9B348002CB723 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		3492FCF529C8D59E002432F0 /* AppStateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateManager.swift; sourceTree = "<group>"; };
@@ -96,6 +99,7 @@
 			children = (
 				3492FCF529C8D59E002432F0 /* AppStateManager.swift */,
 				3406DA6329C9F39D0090B416 /* ThemeManager.swift */,
+				340AB7E429DC007000A818C5 /* MaturaManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -284,6 +288,7 @@
 				344B3B0A29C9B348002CB723 /* SettingsView.swift in Sources */,
 				34C0765529C309D900ACF799 /* OnboardingView.swift in Sources */,
 				3492FCF629C8D59E002432F0 /* AppStateManager.swift in Sources */,
+				340AB7E529DC007000A818C5 /* MaturaManager.swift in Sources */,
 				34C0764829C3087F00ACF799 /* CountView.swift in Sources */,
 				34C0764629C3087F00ACF799 /* whenMaturaApp.swift in Sources */,
 				3406DA6429C9F39D0090B416 /* ThemeManager.swift in Sources */,
@@ -298,6 +303,7 @@
 				34F7DF4429D57CCC00088685 /* whenMaturaWidgetBundle.swift in Sources */,
 				34F7DF4629D57CCC00088685 /* whenMaturaWidget.swift in Sources */,
 				34F7DF5229D57ECE00088685 /* ThemeManager.swift in Sources */,
+				340AB7E629DC007000A818C5 /* MaturaManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

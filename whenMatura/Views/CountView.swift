@@ -14,15 +14,20 @@ struct CountView: View {
     
     @State var shouldShowSettings: Bool = false
     
-    var maturaDate: Date {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        
-        return Calendar.current.startOfDay(for: formatter.date(from: text)!)
-    }
+    @State var maturaDate: Date
     @State var todayBeginning: Date = Calendar.current.startOfDay(for: .now)
     
     @ObservedObject var themeManager = ThemeManager.shared
+    var matura: MaturaManager { MaturaManager(startDate: $maturaDate, todayBeginning: $todayBeginning) }
+    
+    init() {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        let defaults = UserDefaults(suiteName: "group.ga.bartminski.whenMatura")!
+        let text = defaults.string(forKey: "maturaDate")!
+        
+        _maturaDate = State(initialValue: Calendar.current.startOfDay(for: formatter.date(from: text)!))
+    }
     
     var body: some View {
         NavigationStack {
@@ -32,23 +37,22 @@ struct CountView: View {
                     .ignoresSafeArea()
                 
                 VStack {
-                    
                     Spacer()
                     
                     Text("Cześć \(name)!")
                         .font(.system(.largeTitle, design: .rounded, weight: .bold))
                         .foregroundColor(theme.primary)
-                    Text("Pozostało Ci")
+                    Text(matura.texts.top)
                         .font(.system(.title2, design: .rounded))
                         .bold()
                         .foregroundColor(theme.secondary)
                     
-                    Text("\(daysBetween(start: todayBeginning, end: maturaDate))")
+                    Text("\(matura.days)")
                         .font(.system(size: 180, weight: .semibold, design: .rounded))
                         .lineLimit(1)
                         .minimumScaleFactor(0.6)
                         .foregroundColor(theme.primary)
-                    Text("dni do matury")
+                    Text(matura.texts.bottom)
                         .font(.system(.title2, design: .rounded))
                         .bold()
                         .foregroundColor(theme.secondary)
@@ -74,10 +78,12 @@ struct CountView: View {
                 todayBeginning = Calendar.current.startOfDay(for: .now)
             }
         }
-    }
-    
-    func daysBetween(start: Date, end: Date) -> Int {
-       Calendar.current.dateComponents([.day], from: start, to: end).day!
+        .onChange(of: text) { newValue in
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd"
+            
+            maturaDate = Calendar.current.startOfDay(for: formatter.date(from: text)!)
+        }
     }
 }
 
