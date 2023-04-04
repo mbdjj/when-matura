@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import WidgetKit
 
 struct SettingsView: View {
     
@@ -98,6 +99,8 @@ struct SettingsView: View {
             
             let defaults = UserDefaults(suiteName: "group.ga.bartminski.whenMatura")
             defaults?.set(maturaDate(for: endYear), forKey: "maturaDate")
+            defaults?.synchronize()
+            WidgetCenter.shared.reloadTimelines(ofKind: "whenMaturaWidget")
         }
     }
     
