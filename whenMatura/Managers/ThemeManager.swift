@@ -15,13 +15,15 @@ class ThemeManager: ObservableObject {
     let defaultThemes: [Theme] = [.defaultTheme]
     let colorThemes: [Theme] = [.blue, .red, .yellow, .orange, .indigo, .green, .brown, .pink, .purple, .walut, .lavender]
     let altThemes: [Theme] = [.blueAlt, .redAlt, .yellowAlt, .orangeAlt, .indigoAlt, .greenAlt, .brownAlt, .pinkAlt, .purpleAlt, .walutAlt, .lavenderAlt]
-    let userTheme: [Theme] = []
+    
+    @Published var userTheme = Theme(name: "Użytkownika", primary: .black, background: .white)
     
     static let shared = ThemeManager()
     let defaults = UserDefaults(suiteName: "group.ga.bartminski.whenMatura")!
     
     init() {
         let themeCode = defaults.integer(forKey: "themeCode")
+        updateUserTheme()
         current = decodeTheme(from: themeCode)
     }
     
@@ -35,6 +37,8 @@ class ThemeManager: ObservableObject {
         case 200 ..< 300:
             let index = code % 200
             return altThemes[index]
+        case 1000:
+            return userTheme
         default:
             return .defaultTheme
         }
@@ -49,6 +53,8 @@ class ThemeManager: ObservableObject {
         } else if altThemes.contains(where: { $0 == theme }) {
             let code = 200 + altThemes.firstIndex(of: theme)!
             return code
+        } else if theme == userTheme {
+            return 1000
         } else {
             return 0
         }
@@ -61,6 +67,38 @@ class ThemeManager: ObservableObject {
             self.current = theme
         }
         WidgetCenter.shared.reloadTimelines(ofKind: "whenMaturaWidget")
+    }
+    
+    func updateUserTheme() {
+        var primaryColor = CGColor(red: 0, green: 0, blue: 0, alpha: 1)
+        var secondaryColor = CGColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
+        var backgroundColor = CGColor(red: 1, green: 1, blue: 1, alpha: 1)
+        
+        if let primaryComponents = defaults.array(forKey: "customThemePrimary") as? [CGFloat] {
+            primaryColor = CGColor(red: primaryComponents[0], green: primaryComponents[1], blue: primaryComponents[2], alpha: primaryComponents[3])
+        }
+        
+        if let secondaryComponents = defaults.array(forKey: "customThemeSecondary") as? [CGFloat] {
+            secondaryColor = CGColor(red: secondaryComponents[0], green: secondaryComponents[1], blue: secondaryComponents[2], alpha: secondaryComponents[3])
+        }
+        
+        if let backgroundComponents = defaults.array(forKey: "customThemeBackground") as? [CGFloat] {
+            backgroundColor = CGColor(red: backgroundComponents[0], green: backgroundComponents[1], blue: backgroundComponents[2], alpha: backgroundComponents[3])
+        }
+        
+        let useSecondary = defaults.bool(forKey: "customThemeUseSecondary")
+        
+        if useSecondary {
+            userTheme = Theme(name: "Użytkownika", primary: Color(primaryColor), secondary: Color(secondaryColor), background: Color(backgroundColor))
+        } else {
+            userTheme = Theme(name: "Użytkownika", primary: Color(primaryColor), background: Color(backgroundColor))
+        }
+        
+        if defaults.integer(forKey: "themeCode") == 1000 {
+            setTheme(userTheme)
+        }
+        
+        print("User theme updated!")
     }
     
 }

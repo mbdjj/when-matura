@@ -44,6 +44,29 @@ struct ChooseThemeView: View {
             
             VStack {
                 HStack {
+                    Text("UŻYTKOWNIKA")
+                        .font(.system(.caption, design: .rounded, weight: .semibold))
+                        .foregroundColor(.gray)
+                    Spacer()
+                }
+                .padding(.leading)
+                LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 16, alignment: .center), count: 4)) {
+                    ForEach([ThemeManager.shared.userTheme]) { theme in
+                        Button {
+                            withAnimation {
+                                manager.setTheme(theme)
+                            }
+                        } label: {
+                            theme.preview
+                        }
+                    }
+                }
+            }
+            
+            Spacer(minLength: 24)
+            
+            VStack {
+                HStack {
                     Text("KOLOROWE")
                         .font(.system(.caption, design: .rounded, weight: .semibold))
                         .foregroundColor(.gray)

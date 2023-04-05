@@ -23,6 +23,8 @@ struct ThemeCreatorView: View {
         }
     }
     
+    let defaults = UserDefaults(suiteName: "group.ga.bartminski.whenMatura")!
+    
     var body: some View {
         ScrollView {
             ThemePreview(theme: createdTheme)
@@ -50,6 +52,48 @@ struct ThemeCreatorView: View {
         }
         .navigationTitle("Kreator motywów")
         .animation(.easeInOut, value: useSecondary)
+        .toolbar {
+            Button {
+                saveCustomTheme()
+            } label: {
+                Text("Zapisz")
+                    .foregroundColor(.primary)
+                    .bold()
+            }
+        }
+        .onAppear {
+            withAnimation {
+                restoreThemeFromDefaults()
+            }
+        }
+    }
+    
+    func saveCustomTheme() {
+        defaults.set(primaryColor.components, forKey: "customThemePrimary")
+        defaults.set(secondaryColor.components, forKey: "customThemeSecondary")
+        defaults.set(backgroundColor.components, forKey: "customThemeBackground")
+        defaults.set(useSecondary, forKey: "customThemeUseSecondary")
+        print("Custom Theme saved!")
+        
+        ThemeManager.shared.updateUserTheme()
+    }
+    
+    func restoreThemeFromDefaults() {
+        if let primaryComponents = defaults.array(forKey: "customThemePrimary") as? [CGFloat] {
+            primaryColor = CGColor(red: primaryComponents[0], green: primaryComponents[1], blue: primaryComponents[2], alpha: primaryComponents[3])
+        }
+        
+        if let secondaryComponents = defaults.array(forKey: "customThemeSecondary") as? [CGFloat] {
+            secondaryColor = CGColor(red: secondaryComponents[0], green: secondaryComponents[1], blue: secondaryComponents[2], alpha: secondaryComponents[3])
+        }
+        
+        if let backgroundComponents = defaults.array(forKey: "customThemeBackground") as? [CGFloat] {
+            backgroundColor = CGColor(red: backgroundComponents[0], green: backgroundComponents[1], blue: backgroundComponents[2], alpha: backgroundComponents[3])
+        }
+        
+        useSecondary = defaults.bool(forKey: "customThemeUseSecondary")
+        
+        print("Theme loaded!")
     }
 }
 

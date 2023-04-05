@@ -26,7 +26,7 @@ struct Provider: TimelineProvider {
         for dayOffset in 0 ..< 5 {
             let entryDate = Calendar.current.date(byAdding: .day, value: dayOffset, to: currentDate)!
             let themeCode = defaults?.integer(forKey: "themeCode") ?? 0
-            let entry = SimpleEntry(date: entryDate, theme: ThemeManager.shared.decodeTheme(from: themeCode))
+            let entry = SimpleEntry(date: entryDate, theme: ThemeManager().decodeTheme(from: themeCode))
             entries.append(entry)
         }
 
