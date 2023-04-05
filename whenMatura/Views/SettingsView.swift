@@ -52,7 +52,7 @@ struct SettingsView: View {
                 }
                 
                 NavigationLink {
-                    Text("Theme creator")
+                    ThemeCreatorView()
                 } label: {
                     Label("Kreator motywów", systemImage: "paintbrush.fill")
                 }

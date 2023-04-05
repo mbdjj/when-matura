@@ -15,6 +15,7 @@ class ThemeManager: ObservableObject {
     let defaultThemes: [Theme] = [.defaultTheme]
     let colorThemes: [Theme] = [.blue, .red, .yellow, .orange, .indigo, .green, .brown, .pink, .purple, .walut, .lavender]
     let altThemes: [Theme] = [.blueAlt, .redAlt, .yellowAlt, .orangeAlt, .indigoAlt, .greenAlt, .brownAlt, .pinkAlt, .purpleAlt, .walutAlt, .lavenderAlt]
+    let userTheme: [Theme] = []
     
     static let shared = ThemeManager()
     let defaults = UserDefaults(suiteName: "group.ga.bartminski.whenMatura")!

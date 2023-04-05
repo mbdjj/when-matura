@@ -15,32 +15,7 @@ struct ChooseThemeView: View {
         ScrollView {
             
             let selected = manager.current
-            VStack {
-                Text("Podgląd motywu")
-                    .font(.system(.title, design: .rounded, weight: .bold))
-                    .foregroundColor(selected.primary)
-                Text("\(Int.random(in: 1 ... 1000))")
-                    .font(.system(size: 100, weight: .semibold, design: .rounded))
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.6)
-                    .foregroundColor(selected.primary)
-                Text(selected.name)
-                    .font(.system(.title3, design: .rounded))
-                    .bold()
-                    .foregroundColor(selected.secondary)
-            }
-            .padding(24)
-            .background {
-                selected.background
-                    .cornerRadius(16)
-            }
-            .padding(2)
-            .background {
-                Color.primary
-                    .cornerRadius(18)
-            }
-            .padding(8)
-            .minimumScaleFactor(0.6)
+            ThemePreview(theme: selected)
             
             Spacer(minLength: 24)
             
