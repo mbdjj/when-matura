@@ -32,11 +32,11 @@ struct SettingsView: View {
                 TextField(name, text: $changeName)
                     .focused($nameFocused)
                 
-                TextField("Rok rozpoczęcia: \(startYear)", value: $changeStartYear, format: .number)
+                TextField("Rok rozpoczęcia: \(String(startYear))", value: $changeStartYear, format: .number)
                     .keyboardType(.numberPad)
                     .focused($startYearFocused)
                 
-                TextField("Rok matury: \(endYear)", value: $changeEndYear, format: .number)
+                TextField("Rok matury: \(String(endYear))", value: $changeEndYear, format: .number)
                     .keyboardType(.numberPad)
                     .focused($endYearFocused)
             } header: {
