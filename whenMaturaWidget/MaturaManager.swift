@@ -19,11 +19,10 @@ struct MaturaManager {
     }
     
     var currentState: MaturaState {
-        let startOfToday = Calendar.current.startOfDay(for: todayBeginning)
         if let maturaDate, startDate != nil {
-            if daysBetween(start: startOfToday, end: maturaDate) > 0 {
+            if daysBetween(start: todayBeginning, end: maturaDate) > 0 {
                 return .before
-            } else if daysBetween(start: maturaDate, end: startOfToday) >= 0 && daysBetween(start: startOfToday, end: maturaEndDate) >= 0 {
+            } else if daysBetween(start: maturaDate, end: todayBeginning) >= 0 && daysBetween(start: todayBeginning, end: maturaEndDate) >= 0 {
                 return .inBetween
             } else {
                 return .after
@@ -34,21 +33,19 @@ struct MaturaManager {
     }
     
     var days: Int {
-        let startOfToday = Calendar.current.startOfDay(for: todayBeginning)
         switch currentState {
         case .none:
             return 0
         case .before:
-            return daysBetween(start: startOfToday, end: maturaDate!)
+            return daysBetween(start: todayBeginning, end: maturaDate!)
         case .inBetween:
-            return daysBetween(start: maturaDate!, end: startOfToday)
+            return daysBetween(start: maturaDate!, end: todayBeginning)
         case .after:
-            return daysBetween(start: maturaEndDate, end: startOfToday)
+            return daysBetween(start: maturaEndDate, end: todayBeginning)
         }
     }
     
     var percent: Double {
-        let startOfToday = Calendar.current.startOfDay(for: todayBeginning)
         switch currentState {
         case .none:
             return 0
