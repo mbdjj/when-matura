@@ -9,20 +9,21 @@ import SwiftUI
 
 struct MaturaManager {
     
+    let maturaDate: Date?
     let startDate: Date?
     let todayBeginning: Date
     
-    var endDate: Date {
-        let date = Calendar.current.date(byAdding: .day, value: 19, to: startDate ?? .now)!
+    var maturaEndDate: Date {
+        let date = Calendar.current.date(byAdding: .day, value: 19, to: maturaDate ?? .now)!
         return Calendar.current.startOfDay(for: date)
     }
     
     var currentState: MaturaState {
         let startOfToday = Calendar.current.startOfDay(for: todayBeginning)
-        if let startDate {
-            if daysBetween(start: startOfToday, end: startDate) > 0 {
+        if let maturaDate, startDate != nil {
+            if daysBetween(start: startOfToday, end: maturaDate) > 0 {
                 return .before
-            } else if daysBetween(start: startDate, end: startOfToday) >= 0 && daysBetween(start: startOfToday, end: endDate) >= 0 {
+            } else if daysBetween(start: maturaDate, end: startOfToday) >= 0 && daysBetween(start: startOfToday, end: maturaEndDate) >= 0 {
                 return .inBetween
             } else {
                 return .after
@@ -38,11 +39,25 @@ struct MaturaManager {
         case .none:
             return 0
         case .before:
-            return daysBetween(start: startOfToday, end: startDate!)
+            return daysBetween(start: startOfToday, end: maturaDate!)
         case .inBetween:
-            return daysBetween(start: startDate!, end: startOfToday)
+            return daysBetween(start: maturaDate!, end: startOfToday)
         case .after:
-            return daysBetween(start: endDate, end: startOfToday)
+            return daysBetween(start: maturaEndDate, end: startOfToday)
+        }
+    }
+    
+    var percent: Double {
+        let startOfToday = Calendar.current.startOfDay(for: todayBeginning)
+        switch currentState {
+        case .none:
+            return 0
+        case .before:
+            let allDays = daysBetween(start: startDate!, end: maturaDate!)
+            let days = daysBetween(start: startDate!, end: todayBeginning)
+            return Double(days) / Double(allDays)
+        default:
+            return 1
         }
     }
     

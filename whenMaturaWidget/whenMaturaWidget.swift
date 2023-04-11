@@ -41,47 +41,18 @@ struct SimpleEntry: TimelineEntry {
 }
 
 struct whenMaturaWidgetEntryView : View {
-    var entry: Provider.Entry
-    let defaults = UserDefaults(suiteName: "group.ga.bartminski.whenMatura")
+    let entry: Provider.Entry
     
-    var maturaDate: Date? {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        
-        if let dateString = defaults?.string(forKey: "maturaDate") {
-            return Calendar.current.startOfDay(for: formatter.date(from: dateString)!)
-        } else {
-            return nil
-        }
-    }
-    var todayBeginning: Date {
-        return Calendar.current.startOfDay(for: entry.date)
-    }
-    
-    var matura: MaturaManager { MaturaManager(startDate: maturaDate, todayBeginning: todayBeginning) }
+    @Environment(\.widgetFamily) private var widgetFamily
 
     var body: some View {
-        VStack {
-            Text("\(matura.currentState != .none ? String(matura.days) : "XX")")
-                .foregroundColor(entry.theme.primary)
-                .font(.system(size: 70, weight: .bold, design: .rounded))
-                .minimumScaleFactor(0.5)
-                .lineLimit(1)
-            Text(matura.texts.bottom)
-                .foregroundColor(entry.theme.secondary)
-                .font(.system(.body, design: .rounded))
-                .bold()
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .padding()
-        .background { entry.theme.background }
-    }
-    
-    func daysBetween(start: Date, end: Date?) -> Int? {
-        if let endDate = end {
-            return Calendar.current.dateComponents([.day], from: start, to: endDate).day!
-        } else {
-            return nil
+        switch widgetFamily {
+        case .systemSmall:
+            SmallMaturaView(date: entry.date, theme: entry.theme)
+        case .accessoryCircular:
+            CircularMaturaView(date: entry.date)
+        default:
+            EmptyView()
         }
     }
 }
@@ -95,13 +66,13 @@ struct whenMaturaWidget: Widget {
         }
         .configurationDisplayName("Odliczanie")
         .description("Odliczanie do Twojej matury z wybranym w aplikacji motywem.")
-        .supportedFamilies([.systemSmall])
+        .supportedFamilies([.systemSmall, .accessoryCircular])
     }
 }
 
 struct whenMaturaWidget_Previews: PreviewProvider {
     static var previews: some View {
         whenMaturaWidgetEntryView(entry: SimpleEntry(date: Date(), theme: .defaultTheme))
-            .previewContext(WidgetPreviewContext(family: .systemSmall))
+            .previewContext(WidgetPreviewContext(family: .accessoryCircular))
     }
 }
