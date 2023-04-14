@@ -51,6 +51,8 @@ struct whenMaturaWidgetEntryView : View {
             SmallMaturaView(date: entry.date, theme: entry.theme)
         case .accessoryCircular:
             CircularMaturaView(date: entry.date)
+        case .accessoryRectangular:
+            RectagularMaturaView(date: entry.date)
         default:
             EmptyView()
         }
@@ -66,7 +68,7 @@ struct whenMaturaWidget: Widget {
         }
         .configurationDisplayName("Odliczanie")
         .description("Odliczanie do Twojej matury z wybranym w aplikacji motywem.")
-        .supportedFamilies([.systemSmall, .accessoryCircular])
+        .supportedFamilies([.systemSmall, .accessoryCircular, .accessoryRectangular])
     }
 }
 

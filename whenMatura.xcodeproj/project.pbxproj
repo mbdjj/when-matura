@@ -11,6 +11,7 @@
 		3406DA6A29C9F96F0090B416 /* ChooseThemeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3406DA6929C9F96F0090B416 /* ChooseThemeView.swift */; };
 		340AB7E529DC007000A818C5 /* MaturaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340AB7E429DC007000A818C5 /* MaturaManager.swift */; };
 		344B3B0A29C9B348002CB723 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344B3B0929C9B348002CB723 /* SettingsView.swift */; };
+		344FE94529E94EEE001C6DA1 /* RectagularMaturaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344FE94429E94EEE001C6DA1 /* RectagularMaturaView.swift */; };
 		346DEAFD29DC1A5000C5A42F /* MaturaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346DEAFC29DC1A5000C5A42F /* MaturaManager.swift */; };
 		3486ABB529DD953A00574216 /* ThemeCreatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3486ABB429DD953A00574216 /* ThemeCreatorView.swift */; };
 		3486ABB829DD979900574216 /* ThemePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3486ABB729DD979900574216 /* ThemePreview.swift */; };
@@ -61,6 +62,7 @@
 		340AB7E429DC007000A818C5 /* MaturaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaturaManager.swift; sourceTree = "<group>"; };
 		341BA32229CD874D00501A9E /* whenMatura.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = whenMatura.entitlements; sourceTree = "<group>"; };
 		344B3B0929C9B348002CB723 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		344FE94429E94EEE001C6DA1 /* RectagularMaturaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectagularMaturaView.swift; sourceTree = "<group>"; };
 		346DEAFC29DC1A5000C5A42F /* MaturaManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaturaManager.swift; sourceTree = "<group>"; };
 		3486ABB429DD953A00574216 /* ThemeCreatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeCreatorView.swift; sourceTree = "<group>"; };
 		3486ABB729DD979900574216 /* ThemePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePreview.swift; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 			children = (
 				348D7F8529E52682009493E9 /* SmallMaturaView.swift */,
 				34F26C8A29E52B100084A913 /* CircularMaturaView.swift */,
+				344FE94429E94EEE001C6DA1 /* RectagularMaturaView.swift */,
 			);
 			path = WidgetViews;
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 			files = (
 				34F7DF4429D57CCC00088685 /* whenMaturaWidgetBundle.swift in Sources */,
 				34F7DF4629D57CCC00088685 /* whenMaturaWidget.swift in Sources */,
+				344FE94529E94EEE001C6DA1 /* RectagularMaturaView.swift in Sources */,
 				34F7DF5229D57ECE00088685 /* ThemeManager.swift in Sources */,
 				34F26C8B29E52B100084A913 /* CircularMaturaView.swift in Sources */,
 				346DEAFD29DC1A5000C5A42F /* MaturaManager.swift in Sources */,
@@ -474,7 +478,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = whenMatura/whenMatura.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_ASSET_PATHS = "\"whenMatura/Preview Content\"";
 				DEVELOPMENT_TEAM = CMJ553K76W;
 				ENABLE_PREVIEWS = YES;
@@ -510,7 +514,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = whenMatura/whenMatura.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_ASSET_PATHS = "\"whenMatura/Preview Content\"";
 				DEVELOPMENT_TEAM = CMJ553K76W;
 				ENABLE_PREVIEWS = YES;
@@ -545,7 +549,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = whenMaturaWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = CMJ553K76W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = whenMaturaWidget/Info.plist;
@@ -573,7 +577,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = whenMaturaWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = CMJ553K76W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = whenMaturaWidget/Info.plist;
