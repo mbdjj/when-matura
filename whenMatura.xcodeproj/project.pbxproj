@@ -115,13 +115,6 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
-		3406DA6629C9F8530090B416 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
 		3486ABB629DD975A00574216 /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -156,7 +149,6 @@
 				341BA32229CD874D00501A9E /* whenMatura.entitlements */,
 				34C0764529C3087F00ACF799 /* whenMaturaApp.swift */,
 				3406DA6529C9F8440090B416 /* Managers */,
-				3406DA6629C9F8530090B416 /* ViewModels */,
 				34C0765329C308AA00ACF799 /* Views */,
 				3486ABB629DD975A00574216 /* Components */,
 				34C0764929C3087F00ACF799 /* Assets.xcassets */,
@@ -490,6 +482,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -526,6 +519,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
