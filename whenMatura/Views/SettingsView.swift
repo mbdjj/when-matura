@@ -7,12 +7,16 @@
 
 import SwiftUI
 import WidgetKit
+import AlertToast
 
 struct SettingsView: View {
     
     @AppStorage("name", store: UserDefaults(suiteName: "group.ga.bartminski.whenMatura")) var name: String = "User"
     @AppStorage("startYear", store: UserDefaults(suiteName: "group.ga.bartminski.whenMatura")) var startYear: Int = 2020
     @AppStorage("endYear", store: UserDefaults(suiteName: "group.ga.bartminski.whenMatura")) var endYear: Int = 2025
+    
+    @AppStorage("presentToast") var showToast: Bool = false
+    @AppStorage("toastTitle") var toastTitle: String = "Działa"
     
     @State var changeName = ""
     @State var changeStartYear: Int? = nil
@@ -85,6 +89,7 @@ struct SettingsView: View {
     }
     
     func saveInfo() {
+        let defaults = UserDefaults(suiteName: "group.ga.bartminski.whenMatura")
         if changeName != "" {
             name = changeName
             changeName = ""
@@ -92,16 +97,21 @@ struct SettingsView: View {
         if changeStartYear != nil {
             startYear = changeStartYear!
             changeStartYear = nil
+            
+            defaults?.synchronize()
+            WidgetCenter.shared.reloadTimelines(ofKind: "whenMaturaWidget")
         }
         if changeEndYear != nil {
             endYear = changeEndYear!
             changeEndYear = nil
             
-            let defaults = UserDefaults(suiteName: "group.ga.bartminski.whenMatura")
             defaults?.set(maturaDate(for: endYear), forKey: "maturaDate")
             defaults?.synchronize()
             WidgetCenter.shared.reloadTimelines(ofKind: "whenMaturaWidget")
         }
+        
+        toastTitle = "Zapisano informacje"
+        showToast = true
     }
     
     func unfocusFields() {

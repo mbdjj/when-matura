@@ -6,11 +6,15 @@
 //
 
 import SwiftUI
+import AlertToast
 
 struct CountView: View {
     
     @AppStorage("name", store: UserDefaults(suiteName: "group.ga.bartminski.whenMatura")) var name: String = "User"
     @AppStorage("maturaDate", store: UserDefaults(suiteName: "group.ga.bartminski.whenMatura")) var text: String = "2069-05-04"
+    
+    @AppStorage("presentToast") var showToast: Bool = false
+    @AppStorage("toastTitle") var toastTitle: String = "Działa"
     
     @State var shouldShowSettings: Bool = false
     
@@ -83,6 +87,9 @@ struct CountView: View {
             formatter.dateFormat = "yyyy-MM-dd"
             
             maturaDate = Calendar.current.startOfDay(for: formatter.date(from: text)!)
+        }
+        .toast(isPresenting: $showToast) {
+            AlertToast(displayMode: .hud, type: .systemImage("checkmark", .green), title: toastTitle)
         }
     }
 }

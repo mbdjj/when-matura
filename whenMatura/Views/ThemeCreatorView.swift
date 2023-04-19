@@ -9,6 +9,9 @@ import SwiftUI
 
 struct ThemeCreatorView: View {
     
+    @AppStorage("presentToast") var showToast: Bool = false
+    @AppStorage("toastTitle") var toastTitle: String = "Działa"
+    
     @State var primaryColor: CGColor = .init(red: 0, green: 0, blue: 0, alpha: 1)
     @State var secondaryColor: CGColor = .init(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
     @State var backgroundColor: CGColor = .init(red: 1, green: 1, blue: 1, alpha: 1)
@@ -73,7 +76,9 @@ struct ThemeCreatorView: View {
         defaults.set(secondaryColor.components, forKey: "customThemeSecondary")
         defaults.set(backgroundColor.components, forKey: "customThemeBackground")
         defaults.set(useSecondary, forKey: "customThemeUseSecondary")
-        print("Custom Theme saved!")
+        
+        toastTitle = "Zapisano motyw"
+        showToast = true
         
         ThemeManager.shared.updateUserTheme()
     }
