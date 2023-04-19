@@ -10,6 +10,7 @@
 		3406DA6429C9F39D0090B416 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3406DA6329C9F39D0090B416 /* ThemeManager.swift */; };
 		3406DA6A29C9F96F0090B416 /* ChooseThemeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3406DA6929C9F96F0090B416 /* ChooseThemeView.swift */; };
 		340AB7E529DC007000A818C5 /* MaturaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340AB7E429DC007000A818C5 /* MaturaManager.swift */; };
+		341A540429F05ADE00EA9ECE /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 341A540329F05ADE00EA9ECE /* AlertToast */; };
 		344B3B0A29C9B348002CB723 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344B3B0929C9B348002CB723 /* SettingsView.swift */; };
 		344FE94529E94EEE001C6DA1 /* RectagularMaturaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344FE94429E94EEE001C6DA1 /* RectagularMaturaView.swift */; };
 		346DEAFD29DC1A5000C5A42F /* MaturaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346DEAFC29DC1A5000C5A42F /* MaturaManager.swift */; };
@@ -90,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				341A540429F05ADE00EA9ECE /* AlertToast in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,6 +229,9 @@
 				34F7DF4B29D57CCE00088685 /* PBXTargetDependency */,
 			);
 			name = whenMatura;
+			packageProductDependencies = (
+				341A540329F05ADE00EA9ECE /* AlertToast */,
+			);
 			productName = whenMatura;
 			productReference = 34C0764229C3087F00ACF799 /* whenMatura.app */;
 			productType = "com.apple.product-type.application";
@@ -275,6 +280,9 @@
 				Base,
 			);
 			mainGroup = 34C0763929C3087E00ACF799;
+			packageReferences = (
+				341A540229F05ADE00EA9ECE /* XCRemoteSwiftPackageReference "AlertToast" */,
+			);
 			productRefGroup = 34C0764329C3087F00ACF799 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -623,6 +631,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		341A540229F05ADE00EA9ECE /* XCRemoteSwiftPackageReference "AlertToast" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/elai950/AlertToast";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		341A540329F05ADE00EA9ECE /* AlertToast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 341A540229F05ADE00EA9ECE /* XCRemoteSwiftPackageReference "AlertToast" */;
+			productName = AlertToast;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 34C0763A29C3087E00ACF799 /* Project object */;
 }
