@@ -26,6 +26,8 @@ struct SettingsView: View {
     @FocusState var startYearFocused
     @FocusState var endYearFocused
     
+    @State var showProView: Bool = false
+    
     var disableSave: Bool {
         changeName == "" && changeStartYear == nil && changeEndYear == nil
     }
@@ -64,6 +66,21 @@ struct SettingsView: View {
             } header: {
                 Text("Motywy")
             }
+            
+            Section {
+                Button {
+                    showProView = true
+                } label: {
+                    Label {
+                        Text("Ulepsz do Pro")
+                    } icon: {
+                        Image(systemName: "star.fill")
+                            .foregroundStyle(.linearGradient(colors: [.blue, .indigo, .purple], startPoint: .bottomLeading, endPoint: .topTrailing))
+                    }
+                }
+            } header: {
+                Text("Pro")
+            }
         }
         .navigationTitle("Ustawienia")
         .foregroundColor(.primary)
@@ -78,12 +95,15 @@ struct SettingsView: View {
             .disabled(disableSave)
         }
         .scrollDismissesKeyboard(.immediately)
+        .sheet(isPresented: $showProView) {
+            PurchaseProView()
+        }
     }
     
     func savePressed() {
         unfocusFields()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+        DispatchQueue.main.async {
             self.saveInfo()
         }
     }

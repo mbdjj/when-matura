@@ -18,6 +18,8 @@
 		3486ABB829DD979900574216 /* ThemePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3486ABB729DD979900574216 /* ThemePreview.swift */; };
 		348D7F8629E52682009493E9 /* SmallMaturaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348D7F8529E52682009493E9 /* SmallMaturaView.swift */; };
 		3492FCF629C8D59E002432F0 /* AppStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3492FCF529C8D59E002432F0 /* AppStateManager.swift */; };
+		34BDF5AF2A08D1C000013E3F /* PurchaseProView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BDF5AE2A08D1C000013E3F /* PurchaseProView.swift */; };
+		34BDF5B12A08D6ED00013E3F /* ProFeatuteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BDF5B02A08D6ED00013E3F /* ProFeatuteCell.swift */; };
 		34C0764629C3087F00ACF799 /* whenMaturaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C0764529C3087F00ACF799 /* whenMaturaApp.swift */; };
 		34C0764829C3087F00ACF799 /* CountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C0764729C3087F00ACF799 /* CountView.swift */; };
 		34C0764A29C3087F00ACF799 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34C0764929C3087F00ACF799 /* Assets.xcassets */; };
@@ -69,6 +71,8 @@
 		3486ABB729DD979900574216 /* ThemePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePreview.swift; sourceTree = "<group>"; };
 		348D7F8529E52682009493E9 /* SmallMaturaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallMaturaView.swift; sourceTree = "<group>"; };
 		3492FCF529C8D59E002432F0 /* AppStateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateManager.swift; sourceTree = "<group>"; };
+		34BDF5AE2A08D1C000013E3F /* PurchaseProView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseProView.swift; sourceTree = "<group>"; };
+		34BDF5B02A08D6ED00013E3F /* ProFeatuteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProFeatuteCell.swift; sourceTree = "<group>"; };
 		34C0764229C3087F00ACF799 /* whenMatura.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = whenMatura.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34C0764529C3087F00ACF799 /* whenMaturaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = whenMaturaApp.swift; sourceTree = "<group>"; };
 		34C0764729C3087F00ACF799 /* CountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountView.swift; sourceTree = "<group>"; };
@@ -121,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				3486ABB729DD979900574216 /* ThemePreview.swift */,
+				34BDF5B02A08D6ED00013E3F /* ProFeatuteCell.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -175,6 +180,7 @@
 				344B3B0929C9B348002CB723 /* SettingsView.swift */,
 				3406DA6929C9F96F0090B416 /* ChooseThemeView.swift */,
 				3486ABB429DD953A00574216 /* ThemeCreatorView.swift */,
+				34BDF5AE2A08D1C000013E3F /* PurchaseProView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -320,12 +326,14 @@
 			files = (
 				3486ABB829DD979900574216 /* ThemePreview.swift in Sources */,
 				344B3B0A29C9B348002CB723 /* SettingsView.swift in Sources */,
+				34BDF5B12A08D6ED00013E3F /* ProFeatuteCell.swift in Sources */,
 				34C0765529C309D900ACF799 /* OnboardingView.swift in Sources */,
 				3492FCF629C8D59E002432F0 /* AppStateManager.swift in Sources */,
 				340AB7E529DC007000A818C5 /* MaturaManager.swift in Sources */,
 				34C0764829C3087F00ACF799 /* CountView.swift in Sources */,
 				34C0764629C3087F00ACF799 /* whenMaturaApp.swift in Sources */,
 				3486ABB529DD953A00574216 /* ThemeCreatorView.swift in Sources */,
+				34BDF5AF2A08D1C000013E3F /* PurchaseProView.swift in Sources */,
 				3406DA6429C9F39D0090B416 /* ThemeManager.swift in Sources */,
 				3406DA6A29C9F96F0090B416 /* ChooseThemeView.swift in Sources */,
 			);
@@ -406,7 +414,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -460,7 +468,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -478,7 +486,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = whenMatura/whenMatura.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_ASSET_PATHS = "\"whenMatura/Preview Content\"";
 				DEVELOPMENT_TEAM = CMJ553K76W;
 				ENABLE_PREVIEWS = YES;
@@ -515,7 +523,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = whenMatura/whenMatura.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_ASSET_PATHS = "\"whenMatura/Preview Content\"";
 				DEVELOPMENT_TEAM = CMJ553K76W;
 				ENABLE_PREVIEWS = YES;
@@ -551,7 +559,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = whenMaturaWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = CMJ553K76W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = whenMaturaWidget/Info.plist;
@@ -579,7 +587,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = whenMaturaWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = CMJ553K76W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = whenMaturaWidget/Info.plist;
