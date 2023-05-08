@@ -12,7 +12,7 @@ class ThemeManager: ObservableObject {
     
     @Published var current = Theme.defaultTheme
     
-    let defaultThemes: [Theme] = [.defaultTheme]
+    let defaultThemes: [Theme] = [.defaultTheme, .proTheme]
     let colorThemes: [Theme] = [.blue, .red, .yellow, .orange, .indigo, .green, .brown, .pink, .purple, .walut, .lavender]
     let altThemes: [Theme] = [.blueAlt, .redAlt, .yellowAlt, .orangeAlt, .indigoAlt, .greenAlt, .brownAlt, .pinkAlt, .purpleAlt, .walutAlt, .lavenderAlt]
     
@@ -29,8 +29,9 @@ class ThemeManager: ObservableObject {
     
     func decodeTheme(from code: Int) -> Theme {
         switch code {
-        case 0:
-            return .defaultTheme
+        case 0 ..< 100:
+            let index = code
+            return defaultThemes[index]
         case 100 ..< 200:
             let index = code % 100
             return colorThemes[index]
@@ -46,7 +47,8 @@ class ThemeManager: ObservableObject {
     
     private func codeTheme(_ theme: Theme) -> Int {
         if defaultThemes.contains(where: { $0 == theme }) {
-            return 0
+            let code = defaultThemes.firstIndex(of: theme)!
+            return code
         } else if colorThemes.contains(where: { $0 == theme }) {
             let code = 100 + colorThemes.firstIndex(of: theme)!
             return code
@@ -116,6 +118,8 @@ struct Theme: Hashable, Identifiable {
             if background == .systemBackground {
                 background
                 primary
+            } else if name == "Pro" {
+                LinearGradient.pro
             } else {
                 background
             }
@@ -148,6 +152,7 @@ struct Theme: Hashable, Identifiable {
     }
     
     static let defaultTheme = Theme(name: "Domyślny", primary: .primary, secondary: .gray, background: .systemBackground)
+    static let proTheme = Theme(name: "Pro", primary: .white, background: .white)
     
     static let blue = Theme(name: "Niebieski", primary: .white, background: .blue)
     static let red = Theme(name: "Czerwony", primary: .white, background: .red)
@@ -179,4 +184,8 @@ extension Color {
     static let walut = Color(red: 0, green: 0.725, blue: 0.682)
     static let lightPink = Color(red: 1, green: 0.78, blue: 0.87)
     static let lavender = Color(red: 0.75, green: 0.6, blue: 0.9)
+}
+
+extension LinearGradient {
+    static let pro: LinearGradient = LinearGradient(colors: [.blue, .indigo, .purple], startPoint: .bottomLeading, endPoint: .topTrailing)
 }

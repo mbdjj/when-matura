@@ -28,8 +28,13 @@ struct ThemePreview: View {
         }
         .padding(24)
         .background {
-            theme.background
-                .cornerRadius(16)
+            if theme.name == "Pro" {
+                LinearGradient.pro
+                    .cornerRadius(16)
+            } else {
+                theme.background
+                    .cornerRadius(16)
+            }
         }
         .padding(2)
         .background {

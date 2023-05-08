@@ -55,7 +55,13 @@ struct SmallMaturaView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding()
-        .background { theme.background }
+        .background {
+            if theme.name == "Pro" {
+                LinearGradient.pro
+            } else {
+                theme.background
+            }
+        }
     }
 }
 

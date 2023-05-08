@@ -37,8 +37,13 @@ struct CountView: View {
         NavigationStack {
             let theme = themeManager.current
             ZStack {
-                theme.background
-                    .ignoresSafeArea()
+                if theme.name == "Pro" {
+                    LinearGradient.pro
+                        .ignoresSafeArea()
+                } else {
+                    theme.background
+                        .ignoresSafeArea()
+                }
                 
                 VStack {
                     Spacer()
