@@ -91,6 +91,18 @@ struct SettingsView: View {
                 } label: {
                     Label("Oceń aplikację", systemImage: "star")
                 }
+                
+                Button {
+                    sendEmail()
+                } label: {
+                    Label("Napisz do nas", systemImage: "envelope")
+                }
+                
+                let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
+                let build = Bundle.main.infoDictionary?["CFBundleVersion"] as! String
+                Label("Wersja: \(version) (\(build))", systemImage: "gear")
+            } header: {
+                Text("Aplikacja")
             }
         }
         .navigationTitle("Ustawienia")
@@ -163,6 +175,19 @@ struct SettingsView: View {
         }
         print(formatter.string(from: date))
         return formatter.string(from: date)
+    }
+    
+    func sendEmail() {
+        let subject = "Kiedy matura - Wiadomość"
+        let subjectEncoded = subject.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        
+        let url = URL(string: "mailto:marcin@bartminski.ga?subject=\(subjectEncoded)")
+        
+        if let url, UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url)
+        } else {
+            print("D:")
+        }
     }
 }
 
