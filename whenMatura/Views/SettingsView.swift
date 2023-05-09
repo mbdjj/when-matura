@@ -8,6 +8,7 @@
 import SwiftUI
 import WidgetKit
 import AlertToast
+import StoreKit
 
 struct SettingsView: View {
     
@@ -27,6 +28,8 @@ struct SettingsView: View {
     @FocusState var endYearFocused
     
     @State var showProView: Bool = false
+    
+    @Environment(\.requestReview) var requestReview
     
     var disableSave: Bool {
         changeName == "" && changeStartYear == nil && changeEndYear == nil
@@ -75,11 +78,19 @@ struct SettingsView: View {
                         Text("Ulepsz do Pro")
                     } icon: {
                         Image(systemName: "star.fill")
-                            .foregroundStyle(.linearGradient(colors: [.blue, .indigo, .purple], startPoint: .bottomLeading, endPoint: .topTrailing))
+                            .foregroundStyle(LinearGradient.pro)
                     }
                 }
             } header: {
                 Text("Pro")
+            }
+            
+            Section {
+                Button {
+                    requestReview()
+                } label: {
+                    Label("Oceń aplikację", systemImage: "star")
+                }
             }
         }
         .navigationTitle("Ustawienia")
