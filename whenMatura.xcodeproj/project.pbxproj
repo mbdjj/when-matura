@@ -16,6 +16,7 @@
 		344B3B0A29C9B348002CB723 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344B3B0929C9B348002CB723 /* SettingsView.swift */; };
 		344FE94529E94EEE001C6DA1 /* RectagularMaturaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344FE94429E94EEE001C6DA1 /* RectagularMaturaView.swift */; };
 		346DEAFD29DC1A5000C5A42F /* MaturaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346DEAFC29DC1A5000C5A42F /* MaturaManager.swift */; };
+		348635A82A0B8A08004CAE7F /* ThanksProView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348635A72A0B8A08004CAE7F /* ThanksProView.swift */; };
 		3486ABB529DD953A00574216 /* ThemeCreatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3486ABB429DD953A00574216 /* ThemeCreatorView.swift */; };
 		3486ABB829DD979900574216 /* ThemePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3486ABB729DD979900574216 /* ThemePreview.swift */; };
 		348D7F8629E52682009493E9 /* SmallMaturaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348D7F8529E52682009493E9 /* SmallMaturaView.swift */; };
@@ -71,6 +72,7 @@
 		344B3B0929C9B348002CB723 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		344FE94429E94EEE001C6DA1 /* RectagularMaturaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectagularMaturaView.swift; sourceTree = "<group>"; };
 		346DEAFC29DC1A5000C5A42F /* MaturaManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaturaManager.swift; sourceTree = "<group>"; };
+		348635A72A0B8A08004CAE7F /* ThanksProView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThanksProView.swift; sourceTree = "<group>"; };
 		3486ABB429DD953A00574216 /* ThemeCreatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeCreatorView.swift; sourceTree = "<group>"; };
 		3486ABB729DD979900574216 /* ThemePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePreview.swift; sourceTree = "<group>"; };
 		348D7F8529E52682009493E9 /* SmallMaturaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallMaturaView.swift; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 				3406DA6929C9F96F0090B416 /* ChooseThemeView.swift */,
 				3486ABB429DD953A00574216 /* ThemeCreatorView.swift */,
 				34BDF5AE2A08D1C000013E3F /* PurchaseProView.swift */,
+				348635A72A0B8A08004CAE7F /* ThanksProView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -342,6 +345,7 @@
 				34C0764629C3087F00ACF799 /* whenMaturaApp.swift in Sources */,
 				3486ABB529DD953A00574216 /* ThemeCreatorView.swift in Sources */,
 				34BDF5AF2A08D1C000013E3F /* PurchaseProView.swift in Sources */,
+				348635A82A0B8A08004CAE7F /* ThanksProView.swift in Sources */,
 				3406DA6429C9F39D0090B416 /* ThemeManager.swift in Sources */,
 				3406DA6A29C9F96F0090B416 /* ChooseThemeView.swift in Sources */,
 			);

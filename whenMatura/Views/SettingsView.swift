@@ -8,7 +8,7 @@
 import SwiftUI
 import WidgetKit
 import AlertToast
-import StoreKit
+//import StoreKit
 
 struct SettingsView: View {
     
@@ -29,7 +29,9 @@ struct SettingsView: View {
     
     @State var showProView: Bool = false
     
-    @Environment(\.requestReview) var requestReview
+    //@Environment(\.requestReview) var requestReview
+    
+    @ObservedObject var iap = IAPManager.shared
     
     var disableSave: Bool {
         changeName == "" && changeStartYear == nil && changeEndYear == nil
@@ -75,9 +77,9 @@ struct SettingsView: View {
                     showProView = true
                 } label: {
                     Label {
-                        Text("Ulepsz do Pro")
+                        Text(iap.isPro ? "Dziękujemy za wsparcie" : "Ulepsz do Pro")
                     } icon: {
-                        Image(systemName: "star.fill")
+                        Image(systemName: iap.isPro ? "heart.fill" : "star.fill")
                             .foregroundStyle(LinearGradient.pro)
                     }
                 }
@@ -86,11 +88,11 @@ struct SettingsView: View {
             }
             
             Section {
-                Button {
-                    requestReview()
-                } label: {
-                    Label("Oceń aplikację", systemImage: "star")
-                }
+//                Button {
+//                    requestReview()
+//                } label: {
+//                    Label("Oceń aplikację", systemImage: "star")
+//                }
                 
                 Button {
                     sendEmail()
@@ -119,7 +121,11 @@ struct SettingsView: View {
         }
         .scrollDismissesKeyboard(.immediately)
         .sheet(isPresented: $showProView) {
-            PurchaseProView()
+            if iap.isPro {
+                ThanksProView()
+            } else {
+                PurchaseProView()
+            }
         }
     }
     
