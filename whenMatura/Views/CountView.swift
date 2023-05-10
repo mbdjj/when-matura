@@ -85,6 +85,9 @@ struct CountView: View {
             print("Date refreshed!")
             withAnimation {
                 todayBeginning = Calendar.current.startOfDay(for: .now)
+                Task {
+                    await IAPManager.shared.updateProStatus()
+                }
             }
         }
         .onChange(of: text) { newValue in

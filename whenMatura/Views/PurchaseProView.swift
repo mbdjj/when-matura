@@ -11,6 +11,8 @@ struct PurchaseProView: View {
     
     @Environment(\.dismiss) var dismiss
     
+    @ObservedObject var iap = IAPManager.shared
+    
     let featureList = [
         ProFeature("Motywy aplikacji", subtitle: "Odblokuj motywy przygotowane specjalnie przez nas."),
         ProFeature("Kreator motywów", subtitle: "Stwórz swój własny motyw, dokładnie taki jaki lubisz."),
@@ -75,9 +77,12 @@ struct PurchaseProView: View {
             .safeAreaInset(edge: .bottom) {
                 ZStack {
                     Button {
-                        
+                        guard let product = iap.products.first else { return }
+                        Task {
+                            try await iap.purchase(product)
+                        }
                     } label: {
-                        Text("Ulepsz - 10,99 zł")
+                        Text("Ulepsz - \(iap.products.first?.displayPrice ?? "")")
                             .font(.system(.title2, design: .rounded, weight: .semibold))
                             .foregroundColor(.white)
                             .frame(maxWidth: .infinity, minHeight: 50)
@@ -87,6 +92,7 @@ struct PurchaseProView: View {
                             .cornerRadius(25)
                             .padding()
                     }
+                    .disabled(iap.isLoading || iap.isPurchasing)
                 }
                 .frame(height: 70)
                 .background(.regularMaterial)
