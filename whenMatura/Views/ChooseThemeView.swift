@@ -10,6 +10,9 @@ import SwiftUI
 struct ChooseThemeView: View {
     
     @ObservedObject var manager = ThemeManager.shared
+    @ObservedObject var iap = IAPManager.shared
+    
+    @State var showPurchaseSheet: Bool = false
     
     var body: some View {
         ScrollView {
@@ -31,10 +34,14 @@ struct ChooseThemeView: View {
                     ForEach(ThemeManager.shared.defaultThemes) { theme in
                         Button {
                             withAnimation {
-                                manager.setTheme(theme)
+                                checkChangeTheme(to: theme)
                             }
                         } label: {
-                            theme.preview
+                            if iap.isPro || theme == .defaultTheme {
+                                theme.preview
+                            } else {
+                                theme.lockedPreview
+                            }
                         }
                     }
                 }
@@ -54,10 +61,14 @@ struct ChooseThemeView: View {
                     ForEach([ThemeManager.shared.userTheme]) { theme in
                         Button {
                             withAnimation {
-                                manager.setTheme(theme)
+                                checkChangeTheme(to: theme)
                             }
                         } label: {
-                            theme.preview
+                            if iap.isPro {
+                                theme.preview
+                            } else {
+                                theme.lockedPreview
+                            }
                         }
                     }
                 }
@@ -77,10 +88,14 @@ struct ChooseThemeView: View {
                     ForEach(ThemeManager.shared.colorThemes) { theme in
                         Button {
                             withAnimation {
-                                manager.setTheme(theme)
+                                checkChangeTheme(to: theme)
                             }
                         } label: {
-                            theme.preview
+                            if iap.isPro {
+                                theme.preview
+                            } else {
+                                theme.lockedPreview
+                            }
                         }
                     }
                 }
@@ -100,10 +115,14 @@ struct ChooseThemeView: View {
                     ForEach(ThemeManager.shared.altThemes) { theme in
                         Button {
                             withAnimation {
-                                manager.setTheme(theme)
+                                checkChangeTheme(to: theme)
                             }
                         } label: {
-                            theme.preview
+                            if iap.isPro {
+                                theme.preview
+                            } else {
+                                theme.lockedPreview
+                            }
                         }
                     }
                 }
@@ -113,6 +132,17 @@ struct ChooseThemeView: View {
             
         }
         .navigationTitle("Motywy")
+        .sheet(isPresented: $showPurchaseSheet) {
+            PurchaseProView()
+        }
+    }
+    
+    private func checkChangeTheme(to theme: Theme) {
+        if theme != Theme.defaultTheme && !iap.isPro {
+            showPurchaseSheet = true
+        } else {
+            manager.setTheme(theme)
+        }
     }
 }
 

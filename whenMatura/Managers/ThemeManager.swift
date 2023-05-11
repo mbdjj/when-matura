@@ -66,7 +66,9 @@ class ThemeManager: ObservableObject {
         defaults.set(codeTheme(theme), forKey: "themeCode")
         defaults.synchronize()
         DispatchQueue.main.async {
-            self.current = theme
+            withAnimation {
+                self.current = theme
+            }
         }
         WidgetCenter.shared.reloadTimelines(ofKind: "whenMaturaWidget")
     }
@@ -130,6 +132,22 @@ struct Theme: Hashable, Identifiable {
         .background {
             Color.primary
                 .clipShape(Circle())
+        }
+    }
+    
+    var lockedPreview: some View {
+        ZStack {
+            preview
+                .opacity(0.6)
+            
+            Image(systemName: "star.fill")
+                .foregroundColor(.white)
+                .font(.system(size: 20, weight: .black))
+            
+            Image(systemName: "star.fill")
+                .foregroundStyle(LinearGradient.pro)
+                .font(.system(size: 16))
+                
         }
     }
     
