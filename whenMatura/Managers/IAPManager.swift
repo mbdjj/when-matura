@@ -121,16 +121,19 @@ class IAPManager: ObservableObject {
                 if transaction.productID == "ga.bartminski.whenMatura.proFeatures" {
                     print("Transaction updated successfully!")
                     await updateContent(for: transaction.productID)
+                    
+                    return
                 }
             case .unverified(let unverifiedTransaction, let verificationError):
                 if unverifiedTransaction.productID == "ga.bartminski.whenMatura.proFeatures" {
                     print(verificationError.localizedDescription)
-                    DispatchQueue.main.async {
-                        self.isPro = false
-                        ThemeManager.shared.setTheme(.defaultTheme)
-                    }
                 }
             }
+        }
+        
+        DispatchQueue.main.async {
+            self.isPro = false
+            ThemeManager.shared.setTheme(.defaultTheme)
         }
     }
     
