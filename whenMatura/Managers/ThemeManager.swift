@@ -140,14 +140,9 @@ struct Theme: Hashable, Identifiable {
             preview
                 .opacity(0.6)
             
-            Image(systemName: "star.fill")
+            Image(systemName: "lock.fill")
                 .foregroundColor(.white)
-                .font(.system(size: 20, weight: .black))
-            
-            Image(systemName: "star.fill")
-                .foregroundStyle(LinearGradient.pro)
                 .font(.system(size: 16))
-                
         }
     }
     

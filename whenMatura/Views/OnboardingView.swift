@@ -90,7 +90,7 @@ struct OnboardingView: View {
             .tag(0)
             
             VStack {
-                Text("W którym roku zacząłeś / zaczęłaś?")
+                Text("W którym roku zacząłeś / zaczęłaś szkołę średnią?")
                     .foregroundColor(.gray)
                     .onTapGesture {
                         startYearFocused = true
@@ -134,7 +134,7 @@ struct OnboardingView: View {
             .tag(1)
             
             VStack {
-                Text("W którym roku kończysz szkołę??")
+                Text("W którym roku kończysz szkołę średnią?")
                     .foregroundColor(.gray)
                     .onTapGesture {
                         endYearFocused = true

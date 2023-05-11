@@ -97,6 +97,9 @@ struct SettingsView: View {
                 Button {
                     Task {
                         await iap.updateProStatus()
+                        
+                        toastTitle = "Zakupy przywrócone"
+                        showToast = true
                     }
                 } label: {
                     Label("Przywróć zakupy", systemImage: "cart")
