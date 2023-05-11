@@ -189,7 +189,14 @@ struct OnboardingView: View {
         
         defaults.set(true, forKey: "onboardingDone")
         defaults.synchronize()
-        AppStateManager.shared.appState = .app
+        
+        Task {
+            await IAPManager.shared.updateProStatus()
+        }
+        
+        DispatchQueue.main.async {
+            AppStateManager.shared.appState = .app
+        }
     }
     
     func maturaDate(for year: Int) -> String {

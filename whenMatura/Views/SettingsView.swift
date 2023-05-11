@@ -95,6 +95,14 @@ struct SettingsView: View {
 //                }
                 
                 Button {
+                    Task {
+                        await iap.updateProStatus()
+                    }
+                } label: {
+                    Label("Przywróć zakupy", systemImage: "cart")
+                }
+                
+                Button {
                     sendEmail()
                 } label: {
                     Label("Napisz do nas", systemImage: "envelope")
