@@ -39,7 +39,7 @@ struct MaturaManager {
         case .before:
             return daysBetween(start: todayBeginning, end: maturaDate!)
         case .inBetween:
-            return daysBetween(start: maturaDate!, end: todayBeginning)
+            return daysBetween(start: maturaDate!, end: todayBeginning) + 1
         case .after:
             return daysBetween(start: maturaEndDate, end: todayBeginning)
         }
