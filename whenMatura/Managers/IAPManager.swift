@@ -110,7 +110,9 @@ class IAPManager: ObservableObject {
     
     @MainActor func updateContent(for productID: String) {
         if productID == "ga.bartminski.whenMatura.proFeatures" {
-            isPro = true
+            withAnimation {
+                isPro = true
+            }
         }
     }
     

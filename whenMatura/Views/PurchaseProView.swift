@@ -75,27 +75,36 @@ struct PurchaseProView: View {
                 }
             }
             .safeAreaInset(edge: .bottom) {
-                ZStack {
-                    Button {
-                        guard let product = iap.products.first else { return }
-                        Task {
-                            try await iap.purchase(product)
-                        }
-                    } label: {
-                        Text("Ulepsz - \(iap.products.first?.displayPrice ?? "")")
-                            .font(.system(.title2, design: .rounded, weight: .semibold))
-                            .foregroundColor(.white)
-                            .frame(maxWidth: .infinity, minHeight: 50)
-                            .background {
-                                LinearGradient.pro
+                if !iap.isPro {
+                    ZStack {
+                        let disableButton = iap.isLoading || iap.isPurchasing
+                        Button {
+                            guard let product = iap.products.first else { return }
+                            Task {
+                                try await iap.purchase(product)
                             }
-                            .cornerRadius(25)
-                            .padding()
+                        } label: {
+                            Text("Ulepsz - \(iap.products.first?.displayPrice ?? "")")
+                                .font(.system(.title2, design: .rounded, weight: .semibold))
+                                .foregroundColor(.white)
+                                .frame(maxWidth: .infinity, minHeight: 50)
+                                .background {
+                                    LinearGradient.pro
+                                }
+                                .cornerRadius(25)
+                                .padding()
+                        }
+                        .disabled(disableButton)
+                        .opacity(disableButton ? 0.7 : 1.0)
+                        
+                        if disableButton {
+                            ProgressView()
+                                .tint(.white)
+                        }
                     }
-                    .disabled(iap.isLoading || iap.isPurchasing)
+                    .frame(height: 70)
+                    .background(.regularMaterial)
                 }
-                .frame(height: 70)
-                .background(.regularMaterial)
             }
         }
     }
