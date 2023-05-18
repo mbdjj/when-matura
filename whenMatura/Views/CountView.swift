@@ -7,6 +7,7 @@
 
 import SwiftUI
 import AlertToast
+import StoreKit
 
 struct CountView: View {
     
@@ -23,6 +24,8 @@ struct CountView: View {
     
     @ObservedObject var themeManager = ThemeManager.shared
     var matura: MaturaManager { MaturaManager(startDate: $maturaDate, todayBeginning: $todayBeginning) }
+    
+    @Environment(\.requestReview) var requestReview
     
     init() {
         let formatter = DateFormatter()
@@ -72,7 +75,7 @@ struct CountView: View {
                 .padding()
                 .toolbar {
                     NavigationLink {
-                        SettingsView()
+                        SettingsView(requestReview: requestReview)
                             .toolbarRole(.editor)
                     } label: {
                         Image(systemName: "gear")

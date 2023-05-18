@@ -52,6 +52,7 @@ struct SmallMaturaView: View {
                 .foregroundColor(theme.secondary)
                 .font(.system(.body, design: .rounded))
                 .bold()
+                .multilineTextAlignment(.center)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding()

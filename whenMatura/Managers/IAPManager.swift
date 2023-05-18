@@ -21,13 +21,11 @@ class IAPManager: ObservableObject {
     static let shared = IAPManager()
     
     init() {
-        
         taskHandle = listenForTransactions()
         
         Task.init {
             await requestProducts()
         }
-        
     }
     
     func requestProducts() async {

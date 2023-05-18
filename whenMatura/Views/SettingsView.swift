@@ -8,7 +8,7 @@
 import SwiftUI
 import WidgetKit
 import AlertToast
-//import StoreKit
+import StoreKit
 
 struct SettingsView: View {
     
@@ -29,7 +29,7 @@ struct SettingsView: View {
     
     @State var showProView: Bool = false
     
-    //@Environment(\.requestReview) var requestReview
+    let requestReview: RequestReviewAction?
     
     @ObservedObject var iap = IAPManager.shared
     
@@ -88,11 +88,12 @@ struct SettingsView: View {
             }
             
             Section {
-//                Button {
-//                    requestReview()
-//                } label: {
-//                    Label("Oceń aplikację", systemImage: "star")
-//                }
+                Button {
+                    guard let requestReview else { return }
+                    requestReview()
+                } label: {
+                    Label("Oceń aplikację", systemImage: "star")
+                }
                 
                 Button {
                     Task {
@@ -211,7 +212,7 @@ struct SettingsView: View {
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            SettingsView()
+            SettingsView(requestReview: nil)
         }
     }
 }
