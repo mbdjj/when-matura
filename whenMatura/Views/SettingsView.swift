@@ -199,7 +199,7 @@ struct SettingsView: View {
         let subject = "Kiedy matura - Wiadomość"
         let subjectEncoded = subject.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
         
-        let url = URL(string: "mailto:marcin@bartminski.ga?subject=\(subjectEncoded)")
+        let url = URL(string: "mailto:marcin@bartminski.dev?subject=\(subjectEncoded)")
         
         if let url, UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url)
