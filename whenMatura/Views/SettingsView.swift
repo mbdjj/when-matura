@@ -52,7 +52,7 @@ struct SettingsView: View {
                     .focused($endYearFocused)
                 
                 NavigationLink {
-                    AdjustDatesView()
+                    AdjustDatesView(maturaString: UserDefaults.standard.string(forKey: "maturaDate") ?? "2023-08-08")
                 } label: {
                     Label("Dostosuj daty", systemImage: "calendar")
                 }

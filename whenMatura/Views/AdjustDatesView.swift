@@ -8,13 +8,41 @@
 import SwiftUI
 
 struct AdjustDatesView: View {
+    
+    @AppStorage("maturaDate", store: UserDefaults(suiteName: "group.ga.bartminski.whenMatura")) var maturaDateString: String = "2023-08-08"
+    
+    @State var maturaDate: Date
+    
+    init(maturaString: String) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        
+        _maturaDate = State(initialValue: formatter.date(from: maturaString) ?? .now)
+    }
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        List {
+            Section("Data rozpoczęcia matury") {
+                DatePicker("Data", selection: $maturaDate, displayedComponents: .date)
+                    .datePickerStyle(.graphical)
+            }
+        }
+        .navigationTitle("Dostosuj daty")
+        .toolbar {
+            Button {
+                
+            } label: {
+                Text("Zapisz")
+                    .bold()
+            }
+        }
     }
 }
 
 struct AdjustDatesView_Previews: PreviewProvider {
     static var previews: some View {
-        AdjustDatesView()
+        NavigationStack {
+            AdjustDatesView(maturaString: "2023-08-08")
+        }
     }
 }
