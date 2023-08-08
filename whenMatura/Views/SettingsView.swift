@@ -50,6 +50,12 @@ struct SettingsView: View {
                 TextField("Rok matury: \(String(endYear))", value: $changeEndYear, format: .number)
                     .keyboardType(.numberPad)
                     .focused($endYearFocused)
+                
+                NavigationLink {
+                    AdjustDatesView()
+                } label: {
+                    Label("Dostosuj daty", systemImage: "calendar")
+                }
             } header: {
                 Text("Dane użytkownika")
             }
