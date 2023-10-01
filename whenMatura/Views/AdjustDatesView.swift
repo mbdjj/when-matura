@@ -30,12 +30,19 @@ struct AdjustDatesView: View {
         .navigationTitle("Dostosuj daty")
         .toolbar {
             Button {
-                
+                saveDates()
             } label: {
                 Text("Zapisz")
                     .bold()
             }
         }
+    }
+    
+    func saveDates() {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        
+        maturaDateString = formatter.string(from: maturaDate)
     }
 }
 
