@@ -11,19 +11,13 @@ struct AdjustDatesView: View {
     
     @AppStorage("maturaDate", store: UserDefaults(suiteName: "group.ga.bartminski.whenMatura")) var maturaDateString: String = "2023-08-08"
     
-    @State var maturaDate: Date
-    
-    init(maturaString: String) {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        
-        _maturaDate = State(initialValue: formatter.date(from: maturaString) ?? .now)
-    }
+    @State var maturaDate: Date = .now
+    @State private var refresh = false
     
     var body: some View {
         List {
             Section("Data rozpoczęcia matury") {
-                DatePicker("Data", selection: $maturaDate, displayedComponents: .date)
+                DatePicker("Data" + (refresh ? "" : " "), selection: $maturaDate, displayedComponents: .date)
                     .datePickerStyle(.graphical)
             }
         }
@@ -34,6 +28,15 @@ struct AdjustDatesView: View {
             } label: {
                 Text("Zapisz")
                     .bold()
+            }
+        }
+        .onAppear {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd"
+            
+            withAnimation {
+                maturaDate = formatter.date(from: maturaDateString) ?? .distantPast
+                refresh.toggle()
             }
         }
     }
@@ -49,7 +52,7 @@ struct AdjustDatesView: View {
 struct AdjustDatesView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            AdjustDatesView(maturaString: "2023-08-08")
+            AdjustDatesView()
         }
     }
 }

@@ -93,7 +93,7 @@ struct CountView: View {
                 }
             }
         }
-        .onChange(of: text) { newValue in
+        .onChange(of: text) { _ in
             let formatter = DateFormatter()
             formatter.dateFormat = "yyyy-MM-dd"
             
