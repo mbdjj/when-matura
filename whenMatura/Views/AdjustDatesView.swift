@@ -6,11 +6,15 @@
 //
 
 import SwiftUI
+import AlertToast
 
 struct AdjustDatesView: View {
     
     @AppStorage("maturaDate", store: UserDefaults(suiteName: "group.ga.bartminski.whenMatura")) var maturaDateString: String = "2023-08-08"
     @AppStorage("endDate", store: UserDefaults(suiteName: "group.ga.bartminski.whenMatura")) var endDateString: String = "2023-08-09"
+    
+    @AppStorage("presentToast") var showToast: Bool = false
+    @AppStorage("toastTitle") var toastTitle: String = "Działa"
     
     @State var maturaDate: Date = .now
     @State var endDate: Date = .now
@@ -49,12 +53,15 @@ struct AdjustDatesView: View {
         }
     }
     
-    func saveDates() {
+    @MainActor func saveDates() {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         
         maturaDateString = formatter.string(from: maturaDate)
         endDateString = formatter.string(from: endDate)
+        
+        toastTitle = "Zapisano informacje"
+        showToast = true
     }
 }
 
