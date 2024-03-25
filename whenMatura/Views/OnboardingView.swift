@@ -232,4 +232,14 @@ extension Date {
     func dayNumberOfWeek() -> Int? {
         return Calendar.current.dateComponents([.weekday], from: self).weekday
     }
+    
+    func year(using calendar: Calendar = .current) -> Int {
+        return calendar.component(.year, from: self)
+    }
+    func startOfYear(using calendar: Calendar = .current) -> Date {
+        return DateComponents(calendar: calendar, year: year(using: calendar)).date!
+    }
+    func endOfYear(using calendar: Calendar = .current) -> Date {
+        return DateComponents(calendar: calendar, year: year(using: calendar), month: 12, day: 31, hour: 23, minute: 59, second: 59).date!
+    }
 }

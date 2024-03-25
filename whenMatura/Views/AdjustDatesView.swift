@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import WidgetKit
 import AlertToast
 
 struct AdjustDatesView: View {
@@ -17,18 +18,22 @@ struct AdjustDatesView: View {
     @AppStorage("toastTitle") var toastTitle: String = "Działa"
     
     @State var maturaDate: Date = .now
+    @State var previousMaturaDate: Date = .now
     @State var endDate: Date = .now
     @State private var refresh = false
+    
+    var startOfYear: Date { maturaDate.startOfYear() }
+    var endOfYear: Date { maturaDate.endOfYear() }
     
     var body: some View {
         List {
             Section("Data rozpoczęcia matury") {
-                DatePicker("Data" + (refresh ? "" : " "), selection: $maturaDate, displayedComponents: .date)
+                DatePicker("Data" + (refresh ? "" : " "), selection: $maturaDate, in: startOfYear ... endOfYear, displayedComponents: .date)
                     .datePickerStyle(.graphical)
             }
             
             Section("Dzień ostatniej matury") {
-                DatePicker("Data" + (refresh ? "" : " "), selection: $endDate, displayedComponents: .date)
+                DatePicker("Data" + (refresh ? "" : " "), selection: $endDate, in: previousMaturaDate ... endOfYear, displayedComponents: .date)
                     .datePickerStyle(.graphical)
             }
         }
@@ -47,8 +52,17 @@ struct AdjustDatesView: View {
             
             withAnimation {
                 maturaDate = formatter.date(from: maturaDateString) ?? .distantPast
+                previousMaturaDate = maturaDate
                 endDate = formatter.date(from: endDateString) ?? .distantFuture
                 refresh.toggle()
+            }
+        }
+        .onChange(of: maturaDate) { newValue in
+            withAnimation {
+                if newValue.timeIntervalSince1970 > endDate.timeIntervalSince1970 {
+                    endDate = maturaDate
+                    previousMaturaDate = maturaDate
+                }
             }
         }
     }
@@ -59,6 +73,8 @@ struct AdjustDatesView: View {
         
         maturaDateString = formatter.string(from: maturaDate)
         endDateString = formatter.string(from: endDate)
+        UserDefaults(suiteName: "group.ga.bartminski.whenMatura")?.synchronize()
+        WidgetCenter.shared.reloadTimelines(ofKind: "whenMaturaWidget")
         
         toastTitle = "Zapisano informacje"
         showToast = true
