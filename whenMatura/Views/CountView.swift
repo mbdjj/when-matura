@@ -21,9 +21,10 @@ struct CountView: View {
     
     @State var maturaDate: Date
     @State var todayBeginning: Date = Calendar.current.startOfDay(for: .now)
+    @State var endDate: Date
     
     @ObservedObject var themeManager = ThemeManager.shared
-    var matura: MaturaManager { MaturaManager(startDate: $maturaDate, todayBeginning: $todayBeginning) }
+    var matura: MaturaManager { MaturaManager(startDate: $maturaDate, todayBeginning: $todayBeginning, endDate: $endDate) }
     
     @Environment(\.requestReview) var requestReview
     
@@ -32,8 +33,18 @@ struct CountView: View {
         formatter.dateFormat = "yyyy-MM-dd"
         let defaults = UserDefaults(suiteName: "group.ga.bartminski.whenMatura")!
         let text = defaults.string(forKey: "maturaDate")!
+        let end = defaults.string(forKey: "endDate")
         
-        _maturaDate = State(initialValue: Calendar.current.startOfDay(for: formatter.date(from: text)!))
+        let startDate = Calendar.current.startOfDay(for: formatter.date(from: text)!)
+        _maturaDate = State(initialValue: startDate)
+        
+        if let end {
+            _endDate = State(initialValue: Calendar.current.startOfDay(for: formatter.date(from: end)!))
+        } else {
+            let date = Calendar.current.date(byAdding: .day, value: 19, to: startDate)!
+            _endDate = State(initialValue: Calendar.current.startOfDay(for: date))
+            defaults.set(formatter.string(from: date), forKey: "endDate")
+        }
     }
     
     var body: some View {

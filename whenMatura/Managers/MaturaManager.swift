@@ -11,11 +11,7 @@ struct MaturaManager {
     
     @Binding var startDate: Date
     @Binding var todayBeginning: Date
-    
-    var endDate: Date {
-        let date = Calendar.current.date(byAdding: .day, value: 19, to: startDate)!
-        return Calendar.current.startOfDay(for: date)
-    }
+    @Binding var endDate: Date
     
     var currentState: MaturaState {
         let startOfToday = Calendar.current.startOfDay(for: todayBeginning)

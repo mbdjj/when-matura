@@ -10,14 +10,21 @@ import SwiftUI
 struct AdjustDatesView: View {
     
     @AppStorage("maturaDate", store: UserDefaults(suiteName: "group.ga.bartminski.whenMatura")) var maturaDateString: String = "2023-08-08"
+    @AppStorage("endDate", store: UserDefaults(suiteName: "group.ga.bartminski.whenMatura")) var endDateString: String = "2023-08-09"
     
     @State var maturaDate: Date = .now
+    @State var endDate: Date = .now
     @State private var refresh = false
     
     var body: some View {
         List {
             Section("Data rozpoczęcia matury") {
                 DatePicker("Data" + (refresh ? "" : " "), selection: $maturaDate, displayedComponents: .date)
+                    .datePickerStyle(.graphical)
+            }
+            
+            Section("Dzień ostatniej matury") {
+                DatePicker("Data" + (refresh ? "" : " "), selection: $endDate, displayedComponents: .date)
                     .datePickerStyle(.graphical)
             }
         }
@@ -36,6 +43,7 @@ struct AdjustDatesView: View {
             
             withAnimation {
                 maturaDate = formatter.date(from: maturaDateString) ?? .distantPast
+                endDate = formatter.date(from: endDateString) ?? .distantFuture
                 refresh.toggle()
             }
         }
@@ -46,6 +54,7 @@ struct AdjustDatesView: View {
         formatter.dateFormat = "yyyy-MM-dd"
         
         maturaDateString = formatter.string(from: maturaDate)
+        endDateString = formatter.string(from: endDate)
     }
 }
 

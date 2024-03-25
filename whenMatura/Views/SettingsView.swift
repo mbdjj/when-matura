@@ -172,7 +172,9 @@ struct SettingsView: View {
             endYear = changeEndYear!
             changeEndYear = nil
             
-            defaults?.set(maturaDate(for: endYear), forKey: "maturaDate")
+            let maturaDate = maturaDate(for: endYear)
+            defaults?.set(maturaDate, forKey: "maturaDate")
+            defaults?.set(endDate(for: maturaDate), forKey: "endDate")
             defaults?.synchronize()
             WidgetCenter.shared.reloadTimelines(ofKind: "whenMaturaWidget")
         }
@@ -199,6 +201,16 @@ struct SettingsView: View {
         }
         print(formatter.string(from: date))
         return formatter.string(from: date)
+    }
+    
+    func endDate(for maturaDate: String) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        
+        let matura = formatter.date(from: maturaDate)!
+        let endDate = Calendar.current.date(byAdding: .day, value: 19, to: matura)!
+        
+        return formatter.string(from: endDate)
     }
     
     func sendEmail() {
