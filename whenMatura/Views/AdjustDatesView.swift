@@ -61,8 +61,8 @@ struct AdjustDatesView: View {
             withAnimation {
                 if newValue.timeIntervalSince1970 > endDate.timeIntervalSince1970 {
                     endDate = maturaDate
-                    previousMaturaDate = maturaDate
                 }
+                previousMaturaDate = maturaDate
             }
         }
     }

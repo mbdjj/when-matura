@@ -49,8 +49,13 @@ struct whenMaturaWidgetEntryView : View {
         if #available(iOSApplicationExtension 17, *) {
             switch widgetFamily {
             case .systemSmall:
-                SmallMaturaView(date: entry.date, theme: entry.theme)
-                    .containerBackground(entry.theme.background, for: .widget)
+                if entry.theme.name == "Pro" {
+                    SmallMaturaView(date: entry.date, theme: entry.theme)
+                        .containerBackground(LinearGradient.pro, for: .widget)
+                } else {
+                    SmallMaturaView(date: entry.date, theme: entry.theme)
+                        .containerBackground(entry.theme.background, for: .widget)
+                }
             case .accessoryCircular:
                 CircularMaturaView(date: entry.date)
                     .containerBackground(.clear, for: .widget)

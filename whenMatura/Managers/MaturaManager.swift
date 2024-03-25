@@ -39,17 +39,34 @@ struct MaturaManager {
     var texts: MaturaTexts {
         switch currentState {
         case .before:
-            return MaturaTexts(top: "Pozostało Ci", bottom: "dni do matury")
+            return MaturaTexts(top: "\(polishLeft(days)) Ci", bottom: "\(polishDay(days)) do matury")
         case .inBetween:
-            return MaturaTexts(top: "Aktualnie jesteś", bottom: "dni w trakcie matury")
+            return MaturaTexts(top: "Aktualnie jesteś", bottom: "\(polishDay(days)) w trakcie matury")
         case .after:
-            return MaturaTexts(top: "Jesteś już", bottom: "dni po maturze")
+            return MaturaTexts(top: "Jesteś już", bottom: "\(polishDay(days)) po maturze")
         }
     }
     
     
     func daysBetween(start: Date, end: Date) -> Int {
        Calendar.current.dateComponents([.day], from: start, to: end).day!
+    }
+    
+    func polishDay(_ count: Int) -> String {
+        if count == 1 {
+            return "dzień"
+        } else {
+            return "dni"
+        }
+    }
+    func polishLeft(_ count: Int) -> String {
+        if count == 1 {
+            return "Pozostał"
+        } else if count > 1 && count < 5 {
+            return "Pozostały"
+        } else {
+            return "Pozostało"
+        }
     }
     
 }
