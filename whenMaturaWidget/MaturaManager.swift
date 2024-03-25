@@ -12,14 +12,10 @@ struct MaturaManager {
     let maturaDate: Date?
     let startDate: Date?
     let todayBeginning: Date
-    
-    var maturaEndDate: Date {
-        let date = Calendar.current.date(byAdding: .day, value: 19, to: maturaDate ?? .now)!
-        return Calendar.current.startOfDay(for: date)
-    }
+    let maturaEndDate: Date?
     
     var currentState: MaturaState {
-        if let maturaDate, startDate != nil {
+        if let maturaDate, let startDate, let maturaEndDate {
             if daysBetween(start: todayBeginning, end: maturaDate) > 0 {
                 return .before
             } else if daysBetween(start: maturaDate, end: todayBeginning) >= 0 && daysBetween(start: todayBeginning, end: maturaEndDate) >= 0 {
@@ -41,7 +37,7 @@ struct MaturaManager {
         case .inBetween:
             return daysBetween(start: maturaDate!, end: todayBeginning) + 1
         case .after:
-            return daysBetween(start: maturaEndDate, end: todayBeginning)
+            return daysBetween(start: maturaEndDate!, end: todayBeginning)
         }
     }
     

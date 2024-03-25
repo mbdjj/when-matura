@@ -11,6 +11,7 @@ struct SmallMaturaView: View {
     let date: Date
     let theme: Theme
     let defaults = UserDefaults(suiteName: "group.ga.bartminski.whenMatura")
+    let paddingValue: CGFloat
     
     var maturaDate: Date? {
         let formatter = DateFormatter()
@@ -38,8 +39,28 @@ struct SmallMaturaView: View {
     var todayBeginning: Date {
         return Calendar.current.startOfDay(for: date)
     }
+    var endDate: Date? {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        
+        if let dateString = defaults?.string(forKey: "endDate") {
+            return Calendar.current.startOfDay(for: formatter.date(from: dateString)!)
+        } else {
+            return nil
+        }
+    }
     
-    var matura: MaturaManager { MaturaManager(maturaDate: maturaDate, startDate: startDate, todayBeginning: todayBeginning) }
+    var matura: MaturaManager { MaturaManager(maturaDate: maturaDate, startDate: startDate, todayBeginning: todayBeginning, maturaEndDate: endDate) }
+    
+    init(date: Date, theme: Theme) {
+        self.date = date
+        self.theme = theme
+        if #available(iOS 17, *) {
+            paddingValue = 0
+        } else {
+            paddingValue = 16
+        }
+    }
     
     var body: some View {
         VStack {
@@ -55,7 +76,7 @@ struct SmallMaturaView: View {
                 .multilineTextAlignment(.center)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .padding()
+        .padding(paddingValue)
         .background {
             if theme.name == "Pro" {
                 LinearGradient.pro

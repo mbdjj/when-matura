@@ -46,15 +46,31 @@ struct whenMaturaWidgetEntryView : View {
     @Environment(\.widgetFamily) private var widgetFamily
 
     var body: some View {
-        switch widgetFamily {
-        case .systemSmall:
-            SmallMaturaView(date: entry.date, theme: entry.theme)
-        case .accessoryCircular:
-            CircularMaturaView(date: entry.date)
-        case .accessoryRectangular:
-            RectagularMaturaView(date: entry.date)
-        default:
-            EmptyView()
+        if #available(iOSApplicationExtension 17, *) {
+            switch widgetFamily {
+            case .systemSmall:
+                SmallMaturaView(date: entry.date, theme: entry.theme)
+                    .containerBackground(entry.theme.background, for: .widget)
+            case .accessoryCircular:
+                CircularMaturaView(date: entry.date)
+                    .containerBackground(.clear, for: .widget)
+            case .accessoryRectangular:
+                RectagularMaturaView(date: entry.date)
+                    .containerBackground(.clear, for: .widget)
+            default:
+                EmptyView()
+            }
+        } else {
+            switch widgetFamily {
+            case .systemSmall:
+                SmallMaturaView(date: entry.date, theme: entry.theme)
+            case .accessoryCircular:
+                CircularMaturaView(date: entry.date)
+            case .accessoryRectangular:
+                RectagularMaturaView(date: entry.date)
+            default:
+                EmptyView()
+            }
         }
     }
 }

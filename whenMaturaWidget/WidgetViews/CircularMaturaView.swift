@@ -38,8 +38,18 @@ struct CircularMaturaView: View {
     var todayBeginning: Date {
         return Calendar.current.startOfDay(for: date)
     }
+    var endDate: Date? {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        
+        if let dateString = defaults?.string(forKey: "endDate") {
+            return Calendar.current.startOfDay(for: formatter.date(from: dateString)!)
+        } else {
+            return nil
+        }
+    }
     
-    var matura: MaturaManager { MaturaManager(maturaDate: maturaDate, startDate: startDate, todayBeginning: todayBeginning) }
+    var matura: MaturaManager { MaturaManager(maturaDate: maturaDate, startDate: startDate, todayBeginning: todayBeginning, maturaEndDate: endDate) }
     
     var body: some View {
         Gauge(value: matura.percent) {
