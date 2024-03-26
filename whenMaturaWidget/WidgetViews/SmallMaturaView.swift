@@ -63,26 +63,27 @@ struct SmallMaturaView: View {
     }
     
     var body: some View {
-        VStack {
-            Text("\(matura.currentState != .none ? String(matura.days) : "XX")")
-                .foregroundColor(theme.primary)
-                .font(.system(size: 70, weight: .bold, design: .rounded))
-                .minimumScaleFactor(0.5)
-                .lineLimit(1)
-            Text(matura.texts.bottom)
-                .foregroundColor(theme.secondary)
-                .font(.system(.body, design: .rounded))
-                .bold()
-                .multilineTextAlignment(.center)
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .padding(paddingValue)
-        .background {
+        ZStack {
             if theme.name == "Pro" {
                 LinearGradient.pro
             } else {
                 theme.background
             }
+            
+            VStack {
+                Text("\(matura.currentState != .none ? String(matura.days) : "XX")")
+                    .foregroundColor(theme.primary)
+                    .font(.system(size: 70, weight: .bold, design: .rounded))
+                    .minimumScaleFactor(0.5)
+                    .lineLimit(1)
+                Text(matura.texts.bottom)
+                    .foregroundColor(theme.secondary)
+                    .font(.system(.body, design: .rounded))
+                    .bold()
+                    .multilineTextAlignment(.center)
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .padding(paddingValue)
         }
     }
 }
