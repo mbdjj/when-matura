@@ -121,12 +121,12 @@ struct SettingsView: View {
                 let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
                 let build = Bundle.main.infoDictionary?["CFBundleVersion"] as! String
                 Label("Wersja: \(version) (\(build))", systemImage: "gear")
+                    .foregroundStyle(.secondary)
             } header: {
                 Text("Aplikacja")
             }
         }
         .navigationTitle("Ustawienia")
-        .foregroundColor(.primary)
         .toolbar {
             Button {
                 savePressed()
