@@ -64,10 +64,14 @@ struct SmallMaturaView: View {
     
     var body: some View {
         ZStack {
-            if theme.name == "Pro" {
-                LinearGradient.pro
+            if #available(iOSApplicationExtension 17, *) {
+                
             } else {
-                theme.background
+                if theme.name == "Pro" {
+                    LinearGradient.pro
+                } else {
+                    theme.background
+                }
             }
             
             VStack {
