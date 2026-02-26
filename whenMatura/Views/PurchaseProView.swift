@@ -65,13 +65,6 @@ struct PurchaseProView: View {
                     dismiss.callAsFunction()
                 } label: {
                     Image(systemName: "xmark")
-                        .font(.body.weight(.bold))
-                        .frame(width: 30, height: 30)
-                        .foregroundColor(.gray)
-                        .background {
-                            Color(uiColor: .secondarySystemBackground)
-                                .clipShape(Circle())
-                        }
                 }
             }
             .safeAreaInset(edge: .bottom) {
